@@ -1,28 +1,31 @@
-{% extends 'home/base.html' %}
+{% extends 'home/bootstrap.html' %}
+
+{% load staticfiles %}
+
 {% load bootstrap3 %}
 
-{% block title %}{% endblock %}
+{% block bootstrap3_content %}
 
-{% block content %}
-
-
-
-<div class="container">
-
-	<form class="form-signin">
-		<h1 class="form-signin-heading text-muted">Admin Page</h1>
-		<input type="text" class="form-control" placeholder="Emaidl adasdasddress" required="" autofocus="">
-		<input type="password" class="form-control" placeholder="Password" required="">
-    </form>
-    <div class="out-of-form">
-        <a href="{% url 'index' %}">
-        <button class="btn btn-lg btn-primary btn-block" value="ASD">
-            Login
-        </button>
-    </a>
+    <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" title="default" />
+    <script src="{% static 'home/scripts.js' %}"></script>
+    </head>
+    <div class="container">
+        {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+        <div class="container">
+            <form class="form-signin">
+                <h1 class="form-signin-heading text-muted">Admin Page</h1>
+                <input type="text" class="form-control" placeholder="Emaidl adasdasddress" required="" autofocus="">
+                <input type="password" class="form-control" placeholder="Password" required="">
+            </form>
+            <div class="out-of-form">
+                <a href="{% url 'index' %}">
+                <button class="btn btn-lg btn-primary btn-block" value="ASD">
+                    Login
+                </button>
+                </a>
+            </div>
+        </div>
     </div>
-
-
-</div>
 
 {% endblock %}

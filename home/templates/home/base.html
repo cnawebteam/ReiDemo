@@ -6,25 +6,15 @@
 
 {% block bootstrap3_content %}
     <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}?v=07112015" title="default" />
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" title="default" />
+    <script src="{% static 'home/scripts.js' %}"></script>
     </head>
     <div class="container">
         <h1>{% block title %}(no title){% endblock %}</h1>
 
-        <p>
-{#            <a href="{% url 'index' %}">Home</a>#}
-{#            <a href="{% url 'login' %}">Login</a>#}
-{#            <a href="{% url 'formset_default' %}">formset</a>#}
-{#            <a href="{% url 'form_default' %}">form</a>#}
-{#            <a href="{% url 'form_by_field' %}">form_by_field</a>#}
-{#            <a href="{% url 'form_horizontal' %}">form_horizontal</a>#}
-{#            <a href="{% url 'form_inline' %}">form_inline</a>#}
-{#            <a href="{% url 'form_with_files' %}">form_with_files</a>#}
-{#            <a href="{% url 'pagination' %}">pagination</a>#}
-{#            <a href="{% url 'misc' %}">miscellaneous</a>#}
-        </p>
-
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+
+        {% include "home/sidebar/sidebar.html" %}
 
         {% block content %}(no content){% endblock %}
     </div>
