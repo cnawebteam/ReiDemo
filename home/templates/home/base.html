@@ -8,15 +8,10 @@
 
 {% block bootstrap3_content %}
     <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" title="default" />
-{#    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" title="default" />#}
-{#    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" title="default" />#}
-{#    <script src="{% static 'home/scripts.js' %}"></script>#}
-{#        <script type="text/javascript" src={% static 'home/scripts.js' %}></script>#}
-{#        <script src="//code.jquery.com/jquery-1.12.4.js"></script>#}
+        <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" title="default" />
         <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-            <script type="text/javascript" src={% static 'home/scripts.js' %}></script>
+        <script type="text/javascript" src={% static 'home/scripts.js' %}></script>
     </head>
     <div class="container" id="outer_container">
         <h1>{% block title %}(no title){% endblock %}</h1>
