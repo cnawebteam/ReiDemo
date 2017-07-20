@@ -34,12 +34,12 @@ def campaign_details(request, campaign_id=None):
     mock_json = {"parent_category": "red", "category": "Charity", "description": "This is the descr","status": "inactive"}
 
     if request.method == 'POST':
-            form = EditCampaignForm(request.POST, initial={'parent_category': mock_json['parent_category'],
-                                                           'category': mock_json['category'],
-                                                           'description': mock_json['description'],
-                                                           'status': mock_json['status']})
-            if form.is_valid():
-                return HttpResponseRedirect(reverse('index'))
+        form = EditCampaignForm(request.POST, initial={'parent_category': mock_json['parent_category'],
+                                                       'category': mock_json['category'],
+                                                       'description': mock_json['description'],
+                                                       'status': mock_json['status']})
+        if form.is_valid():
+            return HttpResponseRedirect(reverse('campaigns'))
     else:
         form = EditCampaignForm(initial={'parent_category': mock_json['parent_category'],
                                          'category': mock_json['category'],

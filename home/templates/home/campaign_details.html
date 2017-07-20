@@ -8,15 +8,13 @@
 
 {% block content %}
 
-{#    {{ campaign_id }}#}
+    <h2>
+    Viewing campaign #{{ campaign_id }}
+    </h2>
 
     <form action="" method="POST">
         {% crispy form %}
-        <input type="submit" value="Submit" class="btn btn-success" name="campaign_form">
+        <input type="submit" value="Submit" class="btn btn-primary btn-lg" name="campaign_form">
     </form>
 
-{#    {{ json_str.description }}#}
-{#    {{ json_str.product_category }}#}
-{#    {{ json_str.category }}#}
-{#    {{ json_str.status }}#}
 {% endblock %}

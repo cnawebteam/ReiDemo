@@ -134,6 +134,10 @@ body {
     height:100%;
     width:100%
   }
+
+  .progress_cell {
+    margin: 0px;
+  }
   /*.sidebar {*/
     /*float:left;*/
   /*}*/
