@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap3',
-    'home'
+    'home',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -184,3 +185,5 @@ BOOTSTRAP3 = {
         'inline': 'bootstrap3.renderers.InlineFieldRenderer',
     },
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

@@ -1,14 +1,22 @@
 {% extends 'home/base.html' %}
 {% load bootstrap3 %}
 
+{% load crispy_forms_tags %}
+{% crispy form %}
+
 {% block title %}{% endblock %}
 
 {% block content %}
 
+{#    {{ campaign_id }}#}
 
-  <div id="container">
-      DETAILS
-    {{ campaign_id }}
-  </div>
+    <form action="" method="POST">
+        {% crispy form %}
+        <input type="submit" value="Submit" class="btn btn-success" name="campaign_form">
+    </form>
 
+{#    {{ json_str.description }}#}
+{#    {{ json_str.product_category }}#}
+{#    {{ json_str.category }}#}
+{#    {{ json_str.status }}#}
 {% endblock %}

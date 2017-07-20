@@ -123,3 +123,21 @@ body {
   #campaign_table_wrapper {
     margin: 15px;
   }
+
+  #container_right {
+    float: right;
+    width: 85%;
+    margin: 15px;
+  }
+
+  #outer_container {
+    height:100%;
+    width:100%
+  }
+  /*.sidebar {*/
+    /*float:left;*/
+  /*}*/
+
+  /*#main {*/
+    /*flaot:right;*/
+  /*}*/

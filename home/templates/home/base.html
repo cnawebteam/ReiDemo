@@ -18,14 +18,20 @@
         <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
             <script type="text/javascript" src={% static 'home/scripts.js' %}></script>
     </head>
-    <div class="container">
+    <div class="container" id="outer_container">
         <h1>{% block title %}(no title){% endblock %}</h1>
 
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
 
-        {% include "home/sidebar/sidebar.html" %}
+        {% include "home/sidebar/navbar.html" %}
 
-        {% block content %}(no content){% endblock %}
+        <div class="row-offcanvas row-offcanvas-left">
+            {% include "home/sidebar/sidebar.html" %}
+
+            <div id="container_right">
+                {% block content %}(no content){% endblock %}
+            </div>
+        </div><!--/row-offcanvas -->
     </div>
 
 {% endblock %}
