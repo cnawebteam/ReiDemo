@@ -1,13 +1,17 @@
+import requests
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.template.context_processors import csrf
 from home.forms import EditCampaignForm
 from django.core.urlresolvers import reverse
-import json
 
 
-def index(request):
+def index_view(request):
     return render_to_response('home/index.html')
+
+
+def home_redirect(response):
+    return HttpResponseRedirect(reverse('home'))
 
 
 def login(request):
@@ -52,4 +56,11 @@ def campaign_details(request, campaign_id=None):
 
 
 def transactions(request):
-    return render_to_response('home/transactions.html')
+    r = requests.get('http://httpbin.org/get')
+
+    args = {}
+    args.update(csrf(request))
+
+    args['status'] = r.status_code
+
+    return render_to_response('home/transactions.html', args)
