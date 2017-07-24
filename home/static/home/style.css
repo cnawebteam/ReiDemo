@@ -130,8 +130,8 @@ body {
 
   #container_right {
     float: right;
-    width: 85%;
-    margin: 15px;
+    flex: 2;
+    margin-left: 15px;
   }
 
   #outer_container {
@@ -142,10 +142,7 @@ body {
   .progress_cell {
     margin: 0px;
   }
-  /*.sidebar {*/
-    /*float:left;*/
-  /*}*/
 
-  /*#main {*/
-    /*flaot:right;*/
-  /*}*/
+  .row-offcanvas {
+    display: flex;
+  }
