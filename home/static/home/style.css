@@ -125,7 +125,7 @@ body {
   #campaign_table_wrapper,
   #proposal_table,
   #transaction_table_wrapper {
-    margin: 15px;
+    /*margin: 15px;*/
   }
 
   #container_right {
