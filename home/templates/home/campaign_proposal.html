@@ -7,9 +7,8 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-
     <h2>
-    Campaign #{{ campaign_id }}
+    Campaign proposal #{{ proposal_id }}
     </h2>
 
     <form action="" method="POST">
@@ -17,5 +16,4 @@
         <input type="submit" value="Submit" class="btn btn-primary btn-lg" name="campaign_form">
         <input type="button" value="Cancel" class="btn btn-primary btn-lg" name="cancel_form" onclick="window.location = '/home/campaigns/';">
     </form>
-
 {% endblock %}

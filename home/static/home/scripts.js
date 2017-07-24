@@ -7,4 +7,6 @@
 $(document).ready(function() {
     $('#campaign_table').DataTable();
     $('#transaction_table').DataTable();
+    $('#users_table').DataTable();
+    $('#proposal_table').DataTable();
 } );

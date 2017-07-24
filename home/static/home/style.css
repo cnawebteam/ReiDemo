@@ -1,3 +1,4 @@
+  /*LOGIN FORM--------------------------------------------------------------------*/
   body {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -120,7 +121,9 @@ body {
   }
 }
 
+  #users_table,
   #campaign_table_wrapper,
+  #proposal_table,
   #transaction_table_wrapper {
     margin: 15px;
   }

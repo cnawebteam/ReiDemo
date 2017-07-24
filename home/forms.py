@@ -21,3 +21,15 @@ class EditCampaignForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     status = forms.ChoiceField(label='Status', choices=(('active','ACTIVE'), ('inactive', 'INACTIVE')))
     # image
+
+
+class EditProposalForm(forms.Form):
+    helper = FormHelper()
+    helper.form_tag = False
+
+    parent_category = forms.ChoiceField(label='Product category', choices=COLOR_CHOICES)
+    category = forms.CharField(max_length=100)
+    description = forms.CharField(widget=forms.Textarea)
+    status = forms.ChoiceField(label='Status', choices=(('active','ACTIVE'), ('inactive', 'INACTIVE')))
+    # image
+
