@@ -46,6 +46,7 @@ env/
 env110/
 env35/
 __pyache__/
+staticfiles/
 
 *.pyc
 *.pyo

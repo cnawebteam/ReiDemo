@@ -6,4 +6,5 @@
 
 $(document).ready(function() {
     $('#campaign_table').DataTable();
+    $('#transaction_table').DataTable();
 } );

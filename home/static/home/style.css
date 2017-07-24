@@ -120,7 +120,8 @@ body {
   }
 }
 
-  #campaign_table_wrapper {
+  #campaign_table_wrapper,
+  #transaction_table_wrapper {
     margin: 15px;
   }
 
