@@ -83,30 +83,8 @@ def campaign_details(request, campaign_id=None):
     return render_to_response('home/campaign_details.html', args)
 
 
-def campaign_proposals(request, proposal_id=None):
-    args = {}
-    args.update(csrf(request))
-
-    args['proposal_id'] = proposal_id
-
-    mock_json = {"parent_category": "red", "category": "Charity", "description": "This is the descr","status": "inactive"}
-
-    if request.method == 'POST':
-        form = EditCampaignForm(request.POST, initial={'parent_category': mock_json['parent_category'],
-                                                       'category': mock_json['category'],
-                                                       'description': mock_json['description'],
-                                                       'status': mock_json['status']})
-        if form.is_valid():
-            return HttpResponseRedirect(reverse('campaigns'))
-    else:
-        form = EditCampaignForm(initial={'parent_category': mock_json['parent_category'],
-                                         'category': mock_json['category'],
-                                         'description': mock_json['description'],
-                                         'status': mock_json['status']})
-
-    args['form'] = form
-
-    return render_to_response('home/campaign_proposal.html', args)
+def campaign_proposal(request, proposal_id=None):
+    return render_to_response('home/campaign_proposal.html')
 
 
 def transactions(request):
