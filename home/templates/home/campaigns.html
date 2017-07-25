@@ -16,36 +16,21 @@
               <th>Progress</th>
               <th>Contributors</th>
               <th>Status</th>
+              <th>Campaign Url</th>
               <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>For dem kidz</td>
-              <td>Charity</td>
-              <td>
-                  <div class="progress progress_cell">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 85%;">
-                        85%
-                      </div>
-                  </div>
-              </td>
-              <td>4</td>
-              <td>ACTIVE</td>
-              <td><a href="{% url 'home:campaign_details' 34 %}">Edit</a></td>
-            </tr>
             {% for entry in content %}
                 <tr>
-                    <td scope="row">{{ forloop.counter }}</td>
                     <td>{{ entry.id }}</td>
                     <td>{{ entry.title }}</td>
-    {#                <td>{{ entry.campaignUrl }}</td>#}
-                    <td>{{ entry.targetAmount }}</td>
-                    <td>{{ entry.proposalStatus }}</td>
-                    <td>{{ entry.initiator.name }}</td>
+                    <td>{{ entry.category }}</td>
+                    <td>{{ entry.progress }}</td>
+                    <td>{{ entry.contributors }}</td>
+                    <td>{{ entry.campaignStatus }}</td>
                     <td>{{ entry.campaignUrl }}</td>
-                    <td></td>
+                    <td>Edit</td>
                 </tr>
             {% endfor %}
         </tbody>
