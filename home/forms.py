@@ -3,37 +3,34 @@ from django import forms
 from django import forms
 from crispy_forms.helper import FormHelper
 
-COLOR_CHOICES = (
-    ('PENDING','PENDING'),
+CAMPAIGN_STATUSES = (
+    ('PENDING', 'PENDING'),
     ('RUNNING', 'RUNNING'),
-    ('APPROVED','APPROVED'),
-    ('REJECTED','REJECTED'),
-    )
+    ('FINISHED', 'FINISHED'),
+    ('FAILED', 'FAILED')
+)
 
-CAMPAIGN_STATUSES = (('ACTIVE','ACTIVE'),
-                     ('INACTIVE', 'INACTIVE'),
-                     ('ASDASD', 'ASDASD')
-                     )
+PROPOSAL_STATUSES = (
+    ('PENDING', 'PENDING'),
+    ('APPROVED', 'APPROVED'),
+    ('REJECTED', 'REJECTED')
+)
 
 
 class EditCampaignForm(forms.Form):
     helper = FormHelper()
     helper.form_tag = False
 
-    parent_category = forms.ChoiceField(label='Product category', choices=COLOR_CHOICES)
+    parent_category = forms.ChoiceField(label='Product category', choices=CAMPAIGN_STATUSES)
     category = forms.CharField(max_length=100)
     description = forms.CharField(widget=forms.Textarea)
     status = forms.ChoiceField(label='Status', choices=CAMPAIGN_STATUSES)
-    # image
 
 
 class EditProposalForm(forms.Form):
     helper = FormHelper()
     helper.form_tag = False
 
-    # parent_category = forms.ChoiceField(label='Product category', choices=COLOR_CHOICES)
-    campaign_url = forms.CharField(max_length=100)
+    campaign_url = forms.URLField(required=True)
     description = forms.CharField(widget=forms.Textarea)
-    status = forms.ChoiceField(label='Status', choices=CAMPAIGN_STATUSES)
-    # image
-
+    status = forms.ChoiceField(label='Status', choices=PROPOSAL_STATUSES)

@@ -70,17 +70,13 @@ def campaign_proposal_details_view(request, proposal_id=None):
                                                        'description': json_data['description'],
                                                        'status': json_data['proposalStatus']})
         if form.is_valid():
-
             json_data['campaignUrl'] = form.cleaned_data['campaign_url']
             json_data['description'] = form.cleaned_data['description']
             json_data['proposalStatus'] = form.cleaned_data['status']
-            try:
-                headers = {"Content-Type": "application/json"}
-                r = requests.put('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id,
-                                 headers=headers,
-                                 data=json.dumps(json_data))
-            except:
-                raise Http404("Campaign does not exist")
+            headers = {"Content-Type": "application/json"}
+            r = requests.put('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id,
+                             headers=headers,
+                             data=json.dumps(json_data))
             return HttpResponseRedirect(reverse('home:proposals'))
     else:
         form = EditProposalForm(initial={'campaign_url': json_data['campaignUrl'],
