@@ -56,23 +56,36 @@ def campaign_proposal_details_view(request, proposal_id=None):
         content = response.content
 
         my_json = content.decode('utf8').replace("'", '"')
-        data = json.loads(my_json)
+        json_data = json.loads(my_json)
     except:
         raise Http404("Campaign proposal does not exist")
 
     args = {}
     args.update(csrf(request))
 
+    args['proposal_id'] = proposal_id
+
     if request.method == 'POST':
-        form = EditProposalForm(request.POST, initial={'campaignUrl': data['campaignUrl'],
-                                                       'description': data['description'],
-                                                       'status': data['proposalStatus']})
+        form = EditProposalForm(request.POST, initial={'campaign_url': json_data['campaignUrl'],
+                                                       'description': json_data['description'],
+                                                       'status': json_data['proposalStatus']})
         if form.is_valid():
+
+            json_data['campaignUrl'] = form.cleaned_data['campaign_url']
+            json_data['description'] = form.cleaned_data['description']
+            json_data['proposalStatus'] = form.cleaned_data['status']
+            try:
+                headers = {"Content-Type": "application/json"}
+                r = requests.put('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id,
+                                 headers=headers,
+                                 data=json.dumps(json_data))
+            except:
+                raise Http404("Campaign does not exist")
             return HttpResponseRedirect(reverse('home:proposals'))
     else:
-        form = EditProposalForm(initial={'campaignUrl': data['campaignUrl'],
-                                         'description': data['description'],
-                                         'status': data['proposalStatus']})
+        form = EditProposalForm(initial={'campaign_url': json_data['campaignUrl'],
+                                         'description': json_data['description'],
+                                         'status': json_data['proposalStatus']})
 
     args['form'] = form
 
