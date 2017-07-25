@@ -68,7 +68,7 @@ def campaign_proposal_details_view(request, proposal_id=None):
                                                        'description': data['description'],
                                                        'status': data['proposalStatus']})
         if form.is_valid():
-            return HttpResponseRedirect(reverse('campaigns'))
+            return HttpResponseRedirect(reverse('home:proposals'))
     else:
         form = EditProposalForm(initial={'campaignUrl': data['campaignUrl'],
                                          'description': data['description'],
@@ -114,7 +114,7 @@ def campaign_details_view(request, campaign_id=None):
                                                        'description': mock_json['description'],
                                                        'status': mock_json['status']})
         if form.is_valid():
-            return HttpResponseRedirect(reverse('campaigns'))
+            return HttpResponseRedirect(reverse('home:campaigns'))
     else:
         form = EditCampaignForm(initial={'parent_category': mock_json['parent_category'],
                                          'category': mock_json['category'],

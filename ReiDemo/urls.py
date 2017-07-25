@@ -21,7 +21,5 @@ urlpatterns = [
     url(r'^$', campaign_proposals_view, name='home'),
     url(r'^home/', include('home.urls', namespace='home')),
     url(r'^login/$', login_view, name='login'),
-    # url(r'^$', include('home.urls')),
-    # url(r'^/', include('home.urls'), name='home'),
     url(r'^admin/', admin.site.urls),
 ]
