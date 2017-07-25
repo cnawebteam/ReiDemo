@@ -30,14 +30,18 @@
                 <td>{{ entry.targetAmount }}</td>
                 <td>{{ entry.proposalStatus }}</td>
                 <td>{{ entry.initiator.name }}</td>
-                <td>{{ entry.campaignUrl }}</td>
+                <td>{{ entry.campaignUrl|urlize }}</td>
                 <td>
                     <div class="table_div">
                         {% for key, value in entry.campaignProposalDocumentIds.items %}
                             {% if not forloop.last %}
-                                <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ entry.id }}/doc/{{ docId }}">{{ value }}</a>,
+                                <div class="filename">
+                                    <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ entry.id }}/doc/{{ key }}">{{ value }}</a>,
+                                </div>
                             {% elif forloop.last %}
-                                <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ entry.id }}/doc/{{ docId }}">{{ value }}</a>
+                                <div class="filename">
+                                    <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ entry.id }}/doc/{{ key }}">{{ value }}</a>
+                                </div>
                             {% endif %}
                         {% endfor %}
                     </div>
