@@ -47,15 +47,29 @@ def campaign_proposals_view(request):
 
     args['content'] = data
 
-    return render_to_response('home/index.html', args)
+    return render_to_response('home/campaign_proposals.html', args)
 
 
 def campaign_proposal_details_view(request, proposal_id=None):
-    return render_to_response('home/campaign_proposal.html')
+    return render_to_response('home/campaign_proposal_details.html')
 
 
 def campaigns_view(request):
-    return render_to_response('home/campaigns.html')
+    try:
+        response = requests.get('https://ct-campaign-service.herokuapp.com/campaign')
+        content = response.content
+
+        my_json = content.decode('utf8').replace("'", '"')
+        data = json.loads(my_json)
+    except:
+        data = "Could not fetch Campaigns"
+
+    args = {}
+    args.update(csrf(request))
+
+    args['content'] = data
+
+    return render_to_response('home/campaigns.html', args)
 
 
 def campaign_details_view(request, campaign_id=None):
