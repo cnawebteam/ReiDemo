@@ -6,33 +6,15 @@ from home.forms import EditCampaignForm
 from django.core.urlresolvers import reverse
 
 
-def index_view(request):
-    try:
-        response = requests.get('https://ct-campaign-service.herokuapp.com/campaignProposal')
-        content = response.content
-
-        my_json = content.decode('utf8').replace("'", '"')
-        data = json.loads(my_json)
-    except:
-        data = "Could not fetch Campaign Proposals"
-
-    args = {}
-    args.update(csrf(request))
-
-    args['content'] = data
-
-    return render_to_response('home/index.html', args)
-
-
 def home_redirect(response):
     return HttpResponseRedirect(reverse('home'))
 
 
-def login(request):
+def login_view(request):
     return render_to_response('home/login.html')
 
 
-def users(request):
+def users_view(request):
     try:
         response = requests.get('https://ct-campaign-service.herokuapp.com/person')
         content = response.content
@@ -50,11 +32,33 @@ def users(request):
     return render_to_response('home/users.html', args)
 
 
-def campaigns(request):
+def campaign_proposals_view(request):
+    try:
+        response = requests.get('https://ct-campaign-service.herokuapp.com/campaignProposal')
+        content = response.content
+
+        my_json = content.decode('utf8').replace("'", '"')
+        data = json.loads(my_json)
+    except:
+        data = "Could not fetch Campaign Proposals"
+
+    args = {}
+    args.update(csrf(request))
+
+    args['content'] = data
+
+    return render_to_response('home/index.html', args)
+
+
+def campaign_proposal_details_view(request, proposal_id=None):
+    return render_to_response('home/campaign_proposal.html')
+
+
+def campaigns_view(request):
     return render_to_response('home/campaigns.html')
 
 
-def campaign_details(request, campaign_id=None):
+def campaign_details_view(request, campaign_id=None):
     if campaign_id is None:
         raise Http404("Campaign does not exist")
 
@@ -83,11 +87,7 @@ def campaign_details(request, campaign_id=None):
     return render_to_response('home/campaign_details.html', args)
 
 
-def campaign_proposal(request, proposal_id=None):
-    return render_to_response('home/campaign_proposal.html')
-
-
-def transactions(request):
+def transactions_view(request):
     r = requests.get('http://httpbin.org/get')
 
     args = {}
