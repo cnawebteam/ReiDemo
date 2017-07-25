@@ -2,7 +2,7 @@ import requests, json
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.template.context_processors import csrf
-from home.forms import EditCampaignForm
+from home.forms import EditCampaignForm, EditProposalForm
 from django.core.urlresolvers import reverse
 
 
@@ -51,7 +51,32 @@ def campaign_proposals_view(request):
 
 
 def campaign_proposal_details_view(request, proposal_id=None):
-    return render_to_response('home/campaign_proposal_details.html')
+    try:
+        response = requests.get('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id)
+        content = response.content
+
+        my_json = content.decode('utf8').replace("'", '"')
+        data = json.loads(my_json)
+    except:
+        raise Http404("Campaign proposal does not exist")
+
+    args = {}
+    args.update(csrf(request))
+
+    if request.method == 'POST':
+        form = EditProposalForm(request.POST, initial={'campaignUrl': data['campaignUrl'],
+                                                       'description': data['description'],
+                                                       'status': data['proposalStatus']})
+        if form.is_valid():
+            return HttpResponseRedirect(reverse('campaigns'))
+    else:
+        form = EditProposalForm(initial={'campaignUrl': data['campaignUrl'],
+                                         'description': data['description'],
+                                         'status': data['proposalStatus']})
+
+    args['form'] = form
+
+    return render_to_response('home/campaign_proposal_details.html', args)
 
 
 def campaigns_view(request):
