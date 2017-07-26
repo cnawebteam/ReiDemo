@@ -6,9 +6,9 @@ $(document).ready(function() {
         "order": [ 0, 'asc' ]
     });
     $('#users_table').DataTable({
-        "columnDefs": [
-        { "width": "2.5%", "targets": [0,1] },
-        { "width": "13.5%", "targets": [2,3,4,5,6,7,8] }],
+        //"columnDefs": [
+        //{ "width": "2.5%", "targets": [0,1] },
+        //{ "width": "13.5%", "targets": [2,3] }],
         "order": [ 0, 'asc' ]
     });
     $('#proposal_table').DataTable({

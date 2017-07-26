@@ -19,6 +19,20 @@
         <div id="target_amount">
             Target amount: <br/> {{ data.targetAmount }} EUR
         </div>
+        <div id="documentation">
+            Campaign documentation: <br/>
+            {% for key, value in data.campaignProposalDocumentIds.items %}
+                {% if not forloop.last %}
+                    <div class="filename">
+                        <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>,&nbsp;
+                    </div>
+                {% elif forloop.last %}
+                    <div class="filename">
+                        <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
 
     <form action="" method="POST">
@@ -26,22 +40,22 @@
         <input type="submit" value="Submit" class="btn btn-primary btn-lg" name="campaign_form"">
         <input type="button" value="Cancel" class="btn btn-primary btn-lg" name="cancel_form" onclick="window.location = '/home/campaign_proposals/';">
     </form>
-    <div id="campaign_doc">
-        <div id="doc_header">
-            Campaign documentation: <br/>
-        </div>
-        <div id="doc_body">
-        {% for key, value in data.campaignProposalDocumentIds.items %}
-            {% if not forloop.last %}
-                <div class="filename">
-                    <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>,&nbsp;
-                </div>
-            {% elif forloop.last %}
-                <div class="filename">
-                    <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>
-                </div>
-            {% endif %}
-        {% endfor %}
-        </div>
-    </div>
+{#    <div id="campaign_doc">#}
+{#        <div id="doc_header">#}
+{#            Campaign documentation: <br/>#}
+{#        </div>#}
+{#        <div id="doc_body">#}
+{#        {% for key, value in data.campaignProposalDocumentIds.items %}#}
+{#            {% if not forloop.last %}#}
+{#                <div class="filename">#}
+{#                    <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>,&nbsp;#}
+{#                </div>#}
+{#            {% elif forloop.last %}#}
+{#                <div class="filename">#}
+{#                    <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>#}
+{#                </div>#}
+{#            {% endif %}#}
+{#        {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
 {% endblock %}

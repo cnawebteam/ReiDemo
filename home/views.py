@@ -131,6 +131,14 @@ def campaigns_view(request):
 
         my_json = content.decode('utf8')
         data = json.loads(my_json)
+
+        for entry in data:
+            if entry['currentAmount'] is not None and entry['targetAmount'] is not None:
+                current = (entry['currentAmount']) = 20000
+                target = (entry['targetAmount'])
+                # current = (20000)
+                value = ((current / target) * 100)
+                entry['progress'] = round(value, 2)
     except:
         data = "Could not fetch Campaigns"
 

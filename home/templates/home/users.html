@@ -11,28 +11,24 @@
     <table id="users_table" class="table table-striped table-bordered generic_table" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th>#</th>
                 <th>Id</th>
-                <th>External Id</th>
-                <th>External Type</th>
-                <th>Status</th>
-                <th>Bank Account Data</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Campaign Pledge Page</th>
+                <th>Mobile Number</th>
+                <th>Permanent Residence</th>
+                <th>Type</th>
+                <th>Action</th>
         </thead>
         <tbody>
         {% for entry in content %}
             <tr>
-                <td scope="row">{{ entry.id }}</td>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ entry.externalId }}</td>
-                <td>{{ entry.externalIdType }}</td>
-                <td>{{ entry.personStatus }}</td>
-                <td>{{ entry.bankAccountData }}</td>
+                <td>{{ entry.id }}</td>
                 <td>{{ entry.name }}</td>
                 <td>{{ entry.email }}</td>
-                <td>{{ entry.campaignUrl }}</td>
+                <td>{{ entry.mobileNumber }}</td>
+                <td>{{ entry.permanentResidence }}</td>
+                <td>{{ entry.externalIdType }}</td>
+                <td>View</td>
             </tr>
         {% endfor %}
         </tbody>

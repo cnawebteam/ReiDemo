@@ -149,24 +149,28 @@ body {
 
   /*Campaign page*/
 
-  #doc_body,
-  #doc_header,
+
+  #documentation,
   #campaign_header {
     display: flex;
-    margin: 15px;
     font-weight: bold;
     font-size: 22px;
     /*height: 100%;*/
   }
 
   #funding_status {
-    float: left;
-    flex: 1;
+    width: 30%;
+    margin: 15px;
   }
 
   #target_amount {
-    float: right;
-    flex: 2;
+    width: 30%;
+    margin: 15px;
+  }
+
+  #documentation {
+    width: 40%;
+    margin: 15px;
   }
 
   #campaign_doc {
@@ -177,3 +181,4 @@ body {
   #donut_div {
     padding-bottom: 15px;
   }
+
