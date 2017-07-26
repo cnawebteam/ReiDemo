@@ -45,7 +45,9 @@ def campaign_proposals_view(request):
        ['Finished', 10],
     ]
     data_source = SimpleDataSource(data=data)
-    chart = morris.DonutChart(data_source, options={'colors': ['#0BA462', '#39B580', '#67C69D', '#95D7BB']})
+    # chart = morris.DonutChart(data_source, options={'colors': ['#0BA462', '#39B580', '#67C69D', '#95D7BB']})
+    # chart = morris.DonutChart(data_source, html_id='donut_div')
+    chart = morris.DonutChart(data_source, height=250, width=250)
 
     try:
         response = requests.get('https://ct-campaign-service.herokuapp.com/campaignProposal')
@@ -80,7 +82,7 @@ def campaign_proposal_details_view(request, proposal_id=None):
 
     args['proposal_id'] = proposal_id
 
-    initial_data = {'campaign_category': json_data['campaignType'],
+    initial_data = {'campaign_type': json_data['campaignType'],
                     'permanent_residence': json_data['initiator']['permanentResidence'],
                     'email': json_data['initiator']['email'],
                     'mobile_number': json_data['initiator']['mobileNumber'],
@@ -157,7 +159,7 @@ def campaign_details_view(request, campaign_id=None):
 
     args['campaign_id'] = campaign_id
 
-    initial_data = {'campaign_category': "test",
+    initial_data = {'campaign_type': "test",
                     'permanent_residence': json_data['initiator']['permanentResidence'],
                     'email': json_data['initiator']['email'],
                     'mobile_number': json_data['initiator']['mobileNumber'],

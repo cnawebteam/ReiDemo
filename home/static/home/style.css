@@ -172,3 +172,8 @@ body {
   #campaign_doc {
     padding-top: 15px;
   }
+
+  /*dashboard chart*/
+  #donut_div {
+    padding-bottom: 15px;
+  }

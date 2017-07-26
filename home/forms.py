@@ -16,8 +16,18 @@ PROPOSAL_STATUSES = (
     ('REJECTED', 'REJECTED')
 )
 
+PROPOSAL_TYPE = (
+    ('CHARITY', 'CHARITY'),
+    ('SPORTS', 'SPORTS'),
+    ('TECHNOLOGY', 'TECHNOLOGY'),
+    ('ART', 'ART'),
+    ('ANIMALS', 'ANIMALS'),
+    ('CULTURE', 'CULTURE'),
+    ('COMMUNITY_PROJECTS', 'COMMUNITY_PROJECTS'),
+)
+
 helper_layout = Layout(Div(
-        Div('campaign_category', css_class='col-sm-6',),
+        Div('campaign_type', css_class='col-sm-6',),
         Div('project_location', css_class='col-sm-6',),
         Div('permanent_residence', css_class='col-sm-6',),
         Div('email', css_class='col-sm-6',),
@@ -55,7 +65,7 @@ class EditProposalForm(forms.Form):
     helper.form_tag = False
     helper.layout = helper_layout
 
-    campaign_category = forms.CharField(max_length=100)
+    campaign_type = forms.ChoiceField(label='Type', choices=PROPOSAL_TYPE)
     permanent_residence = forms.CharField(max_length=100)
     email = forms.EmailField(max_length=100)
     mobile_number = forms.CharField(max_length=100)
