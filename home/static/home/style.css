@@ -149,7 +149,6 @@ body {
 
   /*Campaign page*/
 
-
   #documentation,
   #campaign_header {
     display: flex;
@@ -180,5 +179,9 @@ body {
   /*dashboard chart*/
   #donut_div {
     padding-bottom: 15px;
+  }
+
+  #my-progress {
+    margin-bottom: 0px;
   }
 
