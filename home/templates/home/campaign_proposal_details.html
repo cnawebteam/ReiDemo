@@ -8,8 +8,17 @@
 
 {% block content %}
     <h2>
-    Campaign proposal #{{ proposal_id }}
+    Campaign proposal "{{ data.title }}"
     </h2>
+
+    <div id="campaign_header">
+        <div id="funding_status">
+            Funding duration: <br /> {{ data.duration }} days
+        </div>
+        <div id="target_amount">
+            Target amount: <br /> {{ data.targetAmount }} EUR
+        </div>
+    </div>
 
     <form action="" method="POST">
         {% crispy form %}

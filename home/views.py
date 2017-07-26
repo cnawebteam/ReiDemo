@@ -1,3 +1,7 @@
+from graphos.renderers import morris
+from graphos.sources.model import ModelDataSource
+from graphos.sources.simple import SimpleDataSource
+from graphos.renderers.gchart import LineChart
 import requests, json
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
@@ -33,6 +37,18 @@ def users_view(request):
 
 
 def campaign_proposals_view(request):
+    data = [
+       ['Pending', 'Running', 'Failed', 'Finished'],
+       ['Pending', 100],
+       ['Running', 40],
+       ['Failed', 3],
+       ['Finished', 10],
+       ]
+    data_source = SimpleDataSource(data=data)
+    chart = morris.DonutChart(data_source)
+    # chart = morris.DonutChart(data_source, options={'resize': True})
+    # chart = morris.LineChart(data_source, options={'resize': False})
+
     try:
         response = requests.get('https://ct-campaign-service.herokuapp.com/campaignProposal')
         content = response.content
@@ -46,6 +62,7 @@ def campaign_proposals_view(request):
     args.update(csrf(request))
 
     args['content'] = data
+    args['chart'] = chart
 
     return render_to_response('home/campaign_proposals.html', args)
 
@@ -65,25 +82,46 @@ def campaign_proposal_details_view(request, proposal_id=None):
 
     args['proposal_id'] = proposal_id
 
+    initial_data = {'campaign_category': json_data['campaignType'],
+                    'permanent_residence': json_data['initiator']['permanentResidence'],
+                    'email': json_data['initiator']['email'],
+                    'mobile_number': json_data['initiator']['mobileNumber'],
+                    'project_location': json_data['projectLocation'],
+                    'IBAN': json_data['initiator']['iban'],
+                    'campaign_page_url': json_data['campaignUrl'],
+                    'campaign_page_id': json_data['campaignPageId'],
+                    'description': json_data['description'],
+                    'comments': json_data['description'],
+                    'status': json_data['proposalStatus'],
+                   }
+
     if request.method == 'POST':
-        form = EditProposalForm(request.POST, initial={'campaign_url': json_data['campaignUrl'],
-                                                       'description': json_data['description'],
-                                                       'status': json_data['proposalStatus']})
+        form = EditProposalForm(request.POST, initial=initial_data)
         if form.is_valid():
-            json_data['campaignUrl'] = form.cleaned_data['campaign_url']
-            json_data['description'] = form.cleaned_data['description']
+            # json_data['campaignType'] = form.cleaned_data['campaign_category']
+            # json_data['initiator']['permanentResidence'] = form.cleaned_data['permanent_residence']
+            # json_data['initiator']['email'] = form.cleaned_data['email']
+            # json_data['initiator']['mobileNumber'] = form.cleaned_data['mobile_number']
+            # json_data['projectLocation'] = form.cleaned_data['project_location']
+            # json_data['initiator']['iban'] = form.cleaned_data['IBAN']
+            # json_data['campaignUrl'] = form.cleaned_data['campaign_page_url']
+            # json_data['campaignPageId'] = form.cleaned_data['campaign_page_id']
+            # json_data['description'] = form.cleaned_data['description']
+            # json_data['campaignUrl'] = form.cleaned_data['comments']
             json_data['proposalStatus'] = form.cleaned_data['status']
             headers = {"Content-Type": "application/json"}
             r = requests.put('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id,
                              headers=headers,
                              data=json.dumps(json_data))
+            if form.cleaned_data['status'] == 'APPROVED':
+                r = requests.post('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id + '/start',
+                                 headers=headers)
             return HttpResponseRedirect(reverse('home:proposals'))
     else:
-        form = EditProposalForm(initial={'campaign_url': json_data['campaignUrl'],
-                                         'description': json_data['description'],
-                                         'status': json_data['proposalStatus']})
+        form = EditProposalForm(initial=initial_data)
 
     args['form'] = form
+    args['data'] = json_data
 
     return render_to_response('home/campaign_proposal_details.html', args)
 
