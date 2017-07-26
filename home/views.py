@@ -45,8 +45,6 @@ def campaign_proposals_view(request):
        ['Finished', 10],
     ]
     data_source = SimpleDataSource(data=data)
-    # chart = morris.DonutChart(data_source, options={'colors': ['#0BA462', '#39B580', '#67C69D', '#95D7BB']})
-    # chart = morris.DonutChart(data_source, html_id='donut_div')
     chart = morris.DonutChart(data_source, height=250, width=250)
 
     try:
@@ -72,7 +70,7 @@ def campaign_proposal_details_view(request, proposal_id=None):
         response = requests.get('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id)
         content = response.content
 
-        my_json = content.decode('utf8').replace("'", '"')
+        my_json = content.decode('utf8')
         json_data = json.loads(my_json)
     except:
         raise Http404("Campaign proposal does not exist")
@@ -131,7 +129,7 @@ def campaigns_view(request):
         response = requests.get('https://ct-campaign-service.herokuapp.com/campaign')
         content = response.content
 
-        my_json = content.decode('utf8').replace("'", '"')
+        my_json = content.decode('utf8')
         data = json.loads(my_json)
     except:
         data = "Could not fetch Campaigns"
@@ -160,16 +158,16 @@ def campaign_details_view(request, campaign_id=None):
     args['campaign_id'] = campaign_id
 
     initial_data = {'campaign_type': "test",
-                    'permanent_residence': json_data['initiator']['permanentResidence'],
-                    'email': json_data['initiator']['email'],
-                    'mobile_number': json_data['initiator']['mobileNumber'],
-                    'project_location': json_data['projectLocation'],
-                    'IBAN': json_data['initiator']['iban'],
+                    'permanent_residence': json_data['owner']['permanentResidence'],
+                    'email': json_data['owner']['email'],
+                    'mobile_number': json_data['owner']['mobileNumber'],
+                    # 'project_location': json_data['projectLocation'],
+                    'IBAN': json_data['owner']['iban'],
                     'campaign_page_url': json_data['campaignUrl'],
-                    'campaign_page_id': json_data['campaignPageId'],
-                    'description': json_data['description'],
-                    'comments': json_data['description'],
-                    'status': json_data['proposalStatus'],
+                    # 'campaign_page_id': json_data['campaignPageId'],
+                    # 'description': json_data['description'],
+                    # 'comments': json_data['description'],
+                    'status': json_data['campaignStatus'],
     }
 
     if request.method == 'POST':
