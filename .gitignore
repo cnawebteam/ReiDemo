@@ -73,6 +73,7 @@ lib64
 .idea/jsLibraryMappings.xml
 */migrations/*
 activate.bat
+runserver.bar
 deactivate.bat
 runserver.bat
 requirementsNew3.txt
