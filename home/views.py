@@ -43,11 +43,9 @@ def campaign_proposals_view(request):
        ['Running', 40],
        ['Failed', 3],
        ['Finished', 10],
-       ]
+    ]
     data_source = SimpleDataSource(data=data)
-    chart = morris.DonutChart(data_source)
-    # chart = morris.DonutChart(data_source, options={'resize': True})
-    # chart = morris.LineChart(data_source, options={'resize': False})
+    chart = morris.DonutChart(data_source, options={'colors': ['#0BA462', '#39B580', '#67C69D', '#95D7BB']})
 
     try:
         response = requests.get('https://ct-campaign-service.herokuapp.com/campaignProposal')
@@ -93,7 +91,7 @@ def campaign_proposal_details_view(request, proposal_id=None):
                     'description': json_data['description'],
                     'comments': json_data['description'],
                     'status': json_data['proposalStatus'],
-                   }
+    }
 
     if request.method == 'POST':
         form = EditProposalForm(request.POST, initial=initial_data)
@@ -115,7 +113,7 @@ def campaign_proposal_details_view(request, proposal_id=None):
                              data=json.dumps(json_data))
             if form.cleaned_data['status'] == 'APPROVED':
                 r = requests.post('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id + '/start',
-                                 headers=headers)
+                                  headers=headers)
             return HttpResponseRedirect(reverse('home:proposals'))
     else:
         form = EditProposalForm(initial=initial_data)
@@ -145,28 +143,39 @@ def campaigns_view(request):
 
 
 def campaign_details_view(request, campaign_id=None):
-    if campaign_id is None:
-        raise Http404("Campaign does not exist")
+    try:
+        response = requests.get('https://ct-campaign-service.herokuapp.com/campaign/' + campaign_id)
+        content = response.content
+
+        my_json = content.decode('utf8').replace("'", '"')
+        json_data = json.loads(my_json)
+    except:
+        raise Http404("Campaign  does not exist")
 
     args = {}
     args.update(csrf(request))
 
     args['campaign_id'] = campaign_id
 
-    mock_json = {"parent_category": "red", "category": "Charity", "description": "This is the descr","status": "inactive"}
+    initial_data = {'campaign_category': "test",
+                    'permanent_residence': json_data['initiator']['permanentResidence'],
+                    'email': json_data['initiator']['email'],
+                    'mobile_number': json_data['initiator']['mobileNumber'],
+                    'project_location': json_data['projectLocation'],
+                    'IBAN': json_data['initiator']['iban'],
+                    'campaign_page_url': json_data['campaignUrl'],
+                    'campaign_page_id': json_data['campaignPageId'],
+                    'description': json_data['description'],
+                    'comments': json_data['description'],
+                    'status': json_data['proposalStatus'],
+    }
 
     if request.method == 'POST':
-        form = EditCampaignForm(request.POST, initial={'parent_category': mock_json['parent_category'],
-                                                       'category': mock_json['category'],
-                                                       'description': mock_json['description'],
-                                                       'status': mock_json['status']})
+        form = EditCampaignForm(request.POST, initial=initial_data)
         if form.is_valid():
             return HttpResponseRedirect(reverse('home:campaigns'))
     else:
-        form = EditCampaignForm(initial={'parent_category': mock_json['parent_category'],
-                                         'category': mock_json['category'],
-                                         'description': mock_json['description'],
-                                         'status': mock_json['status']})
+        form = EditCampaignForm(initial=initial_data)
 
     args['form'] = form
 

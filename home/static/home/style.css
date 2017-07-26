@@ -149,6 +149,8 @@ body {
 
   /*Campaign page*/
 
+  #doc_body,
+  #doc_header,
   #campaign_header {
     display: flex;
     margin: 15px;
@@ -165,4 +167,8 @@ body {
   #target_amount {
     float: right;
     flex: 2;
+  }
+
+  #campaign_doc {
+    padding-top: 15px;
   }

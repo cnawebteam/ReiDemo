@@ -12,11 +12,13 @@
             <tr>
               <th>#</th>
               <th>Campaign Title</th>
-              <th>Category</th>
+              <th>Owner</th>
+              <th>Target Amount</th>
               <th>Progress</th>
-              <th>Contributors</th>
+              <th>Start date</th>
+              <th>End date</th>
               <th>Status</th>
-              <th>Campaign Url</th>
+              <th>Campaign URL</th>
               <th>Action</th>
             </tr>
         </thead>
@@ -25,12 +27,14 @@
                 <tr>
                     <td>{{ entry.id }}</td>
                     <td>{{ entry.title }}</td>
-                    <td>{{ entry.category }}</td>
-                    <td>{{ entry.progress }}</td>
-                    <td>{{ entry.contributors }}</td>
+                    <td>{{ entry.ownerId }} </td>
+                    <td>{{ entry.targetAmount }}</td>
+                    <td>{{ entry.currentAmount }}</td>
+                    <td>{{ entry.startDate }}</td>
+                    <td>{{ entry.endDate }}</td>
                     <td>{{ entry.campaignStatus }}</td>
-                    <td>{{ entry.campaignUrl }}</td>
-                    <td>Edit</td>
+                    <td>{{ entry.campaignUrl|urlize }}</td>
+                    <td><a href="{% url 'home:campaign_details' entry.id %}">Edit</a></td>
                 </tr>
             {% endfor %}
         </tbody>

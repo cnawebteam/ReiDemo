@@ -7,22 +7,41 @@
 {% block title %}{% endblock %}
 
 {% block content %}
+
     <h2>
     Campaign proposal "{{ data.title }}"
     </h2>
 
     <div id="campaign_header">
         <div id="funding_status">
-            Funding duration: <br /> {{ data.duration }} days
+            Funding duration: <br/> {{ data.duration }} days
         </div>
         <div id="target_amount">
-            Target amount: <br /> {{ data.targetAmount }} EUR
+            Target amount: <br/> {{ data.targetAmount }} EUR
         </div>
     </div>
 
     <form action="" method="POST">
         {% crispy form %}
-        <input type="submit" value="Submit" class="btn btn-primary btn-lg" name="campaign_form">
+        <input type="submit" value="Submit" class="btn btn-primary btn-lg" name="campaign_form"">
         <input type="button" value="Cancel" class="btn btn-primary btn-lg" name="cancel_form" onclick="window.location = '/home/campaign_proposals/';">
     </form>
+    <div id="campaign_doc">
+        <div id="doc_header">
+            Campaign documentation: <br/>
+        </div>
+        <div id="doc_body">
+        {% for key, value in data.campaignProposalDocumentIds.items %}
+            {% if not forloop.last %}
+                <div class="filename">
+                    <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>,&nbsp;
+                </div>
+            {% elif forloop.last %}
+                <div class="filename">
+                    <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+    </div>
 {% endblock %}

@@ -8,7 +8,7 @@
     Dashboard
     </h2>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+{#    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>#}
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
     {{ chart.as_html }}
@@ -21,7 +21,7 @@
                 <th>Proposal Status</th>
                 <th>Initiator</th>
                 <th>Campaign Url</th>
-                <th>Documentation</th>
+{#                <th>Documentation</th>#}
                 <th>Action</th>
             </tr>
         </thead>
@@ -34,21 +34,6 @@
                 <td>{{ entry.proposalStatus }}</td>
                 <td>{{ entry.initiator.name }}</td>
                 <td>{{ entry.campaignUrl|urlize }}</td>
-                <td>
-                    <div class="table_div">
-                        {% for key, value in entry.campaignProposalDocumentIds.items %}
-                            {% if not forloop.last %}
-                                <div class="filename">
-                                    <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ entry.id }}/doc/{{ key }}">{{ value }}</a>,
-                                </div>
-                            {% elif forloop.last %}
-                                <div class="filename">
-                                    <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ entry.id }}/doc/{{ key }}">{{ value }}</a>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </td>
                 <td><a href="{% url 'home:campaign_proposal_details' entry.id %}">Edit</a></td>
             </tr>
         {% endfor %}
