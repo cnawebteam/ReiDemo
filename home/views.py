@@ -111,7 +111,8 @@ def campaign_proposal_details_view(request, proposal_id=None):
             if form.cleaned_data['status'] == 'Approved' and request.POST.get("start_campaign"):
                 r = requests.post('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id + '/start',
                                   headers=headers)
-                return HttpResponseRedirect(reverse('home:campaigns'))
+                campaign_id = json.loads(r.content.decode('utf8'))['id']
+                return HttpResponseRedirect(reverse('home:campaign_details', kwargs={'campaign_id': campaign_id}))
     else:
         form = EditProposalForm(initial=initial_data)
 
