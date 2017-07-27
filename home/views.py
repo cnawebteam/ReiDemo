@@ -95,6 +95,7 @@ def campaign_proposal_details_view(request, proposal_id=None):
 
     if request.method == 'POST':
         form = EditProposalForm(request.POST, initial=initial_data)
+        headers = {"Content-Type": "application/json"}
         if form.is_valid():
             json_data['campaignType'] = form.cleaned_data['campaign_type']
             json_data['projectLocation'] = form.cleaned_data['project_location']
@@ -102,14 +103,14 @@ def campaign_proposal_details_view(request, proposal_id=None):
             json_data['campaignPageId'] = form.cleaned_data['campaign_page_id']
             json_data['description'] = form.cleaned_data['description']
             json_data['proposalStatus'] = form.cleaned_data['status']
-            headers = {"Content-Type": "application/json"}
+
             r = requests.put('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id,
                              headers=headers,
                              data=json.dumps(json_data))
-            if form.cleaned_data['status'] == 'APPROVED':
+            if form.cleaned_data['status'] == 'Approved' and request.POST.get("start_campaign"):
                 r = requests.post('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id + '/start',
                                   headers=headers)
-            return HttpResponseRedirect(reverse('home:proposals'))
+                return HttpResponseRedirect(reverse('home:campaigns'))
     else:
         form = EditProposalForm(initial=initial_data)
 
