@@ -24,27 +24,27 @@ def users_view(request):
         content = response.content
 
         my_json = content.decode('utf8').replace("'", '"')
-        data = json.loads(my_json)
+        json_data = json.loads(my_json)
     except:
-        data = "Could not fetch Users"
+        json_data = "Could not fetch Users"
 
     args = {}
     args.update(csrf(request))
 
-    args['content'] = data
+    args['content'] = json_data
 
     return render_to_response('home/users.html', args)
 
 
 def campaign_proposals_view(request):
-    data = [
+    chart_data = [
        ['Pending', 'Running', 'Failed', 'Finished'],
        ['Pending', 100],
        ['Running', 40],
        ['Failed', 3],
        ['Finished', 10],
     ]
-    data_source = SimpleDataSource(data=data)
+    data_source = SimpleDataSource(data=chart_data)
     chart = morris.DonutChart(data_source, height=250, width=250)
 
     try:
@@ -52,14 +52,14 @@ def campaign_proposals_view(request):
         content = response.content
 
         my_json = content.decode('utf8').replace("'", '"')
-        data = json.loads(my_json)
+        json_data = json.loads(my_json)
     except:
-        data = "Could not fetch Campaign Proposals"
+        json_data = "Could not fetch Campaign Proposals"
 
     args = {}
     args.update(csrf(request))
 
-    args['content'] = data
+    args['content'] = json_data
     args['chart'] = chart
 
     return render_to_response('home/campaign_proposals.html', args)
@@ -89,7 +89,7 @@ def campaign_proposal_details_view(request, proposal_id=None):
                     'campaign_page_url': json_data['campaignUrl'],
                     'campaign_page_id': json_data['campaignPageId'],
                     'description': json_data['description'],
-                    'comments': json_data['description'],
+                    'comments': json_data['approverDetails'],
                     'status': json_data['proposalStatus'],
     }
 
@@ -103,6 +103,7 @@ def campaign_proposal_details_view(request, proposal_id=None):
             json_data['campaignPageId'] = form.cleaned_data['campaign_page_id']
             json_data['description'] = form.cleaned_data['description']
             json_data['proposalStatus'] = form.cleaned_data['status']
+            json_data['approverDetails'] = form.cleaned_data['comments']
 
             r = requests.put('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id,
                              headers=headers,
@@ -126,9 +127,9 @@ def campaigns_view(request):
         content = response.content
 
         my_json = content.decode('utf8')
-        data = json.loads(my_json)
+        json_data = json.loads(my_json)
 
-        for entry in data:
+        for entry in json_data:
             if entry['currentAmount'] is not None and entry['targetAmount'] is not None:
                 current = (entry['currentAmount']) = 20000
                 target = (entry['targetAmount'])
@@ -136,12 +137,12 @@ def campaigns_view(request):
                 value = ((current / target) * 100)
                 entry['progress'] = round(value, 2)
     except:
-        data = "Could not fetch Campaigns"
+        json_data = "Could not fetch Campaigns"
 
     args = {}
     args.update(csrf(request))
 
-    args['content'] = data
+    args['content'] = json_data
 
     return render_to_response('home/campaigns.html', args)
 
@@ -169,8 +170,8 @@ def campaign_details_view(request, campaign_id=None):
                     'IBAN': json_data['owner']['iban'],
                     'campaign_page_url': json_data['campaignUrl'],
                     # 'campaign_page_id': json_data['campaignPageId'],
-                    # 'description': json_data['description'],
-                    # 'comments': json_data['description'],
+                    'description': json_data['description'],
+                    'comments': json_data['description'],
                     'status': json_data['campaignStatus'],
     }
 
@@ -182,16 +183,24 @@ def campaign_details_view(request, campaign_id=None):
         form = EditCampaignForm(initial=initial_data)
 
     args['form'] = form
+    args['data'] = json_data
 
     return render_to_response('home/campaign_details.html', args)
 
 
 def transactions_view(request):
-    r = requests.get('http://httpbin.org/get')
+    try:
+        response = requests.get('https://ct-campaign-service.herokuapp.com/campaignPledge/')
+        content = response.content
+
+        my_json = content.decode('utf8')
+        json_data = json.loads(my_json)
+    except:
+        raise Http404("Cannot fetch transactions")
 
     args = {}
     args.update(csrf(request))
 
-    args['status'] = r.status_code
+    args['content'] = json_data
 
     return render_to_response('home/transactions.html', args)

@@ -7,5 +7,30 @@
     <h2>
     Transactions
     </h2>
-
+    <table id="campaign_table" class="table table-striped table-bordered generic_table" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+              <th>ID</th>
+              <th>Campaign Title</th>
+              <th>Funder Name</th>
+              <th>Pledge Status</th>
+              <th>Pledge Amount</th>
+              <th>Comment</th>
+              <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in content %}
+                <tr>
+                    <td>{{ entry.id }}</td>
+                    <td>{{ entry.campaignId }}</td>
+                    <td>{{ entry.pledger.name }} </td>
+                    <td>{{ entry.pledgeStatus }}</td>
+                    <td>{{ entry.pledgedAmount }}</td>
+                    <td>No Comment</td>
+                    <td>View, Unpledge</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
