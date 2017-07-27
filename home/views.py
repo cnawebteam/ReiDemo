@@ -1,7 +1,7 @@
-from graphos.renderers import morris
+from graphos.renderers import morris, gchart
 from graphos.sources.model import ModelDataSource
 from graphos.sources.simple import SimpleDataSource
-from graphos.renderers.gchart import LineChart
+from graphos.renderers.gchart import LineChart, PieChart
 import requests, json
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, render_to_response

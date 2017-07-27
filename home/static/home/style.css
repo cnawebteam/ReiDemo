@@ -178,7 +178,9 @@ body {
 
   /*dashboard chart*/
   #donut_div {
-    padding-bottom: 15px;
+    width: 250px;
+    height: 250px;
+    margin: auto;
   }
 
   #my-progress {
@@ -197,4 +199,8 @@ body {
 
   .header_title {
     /*height: 60px;*/
+  }
+
+  #gchart_div{
+    height: 300px;
   }
