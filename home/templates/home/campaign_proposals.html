@@ -11,8 +11,36 @@
 {#    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>#}
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-    <div id="donut_div">
-        {{ chart.as_html }}
+    <div id="dashboard_header">
+        <div class="dashboard_header_div">
+            <div id="donut_div">
+                {{ chart.as_html }}
+            </div>
+        </div>
+        <div class="dashboard_header_div">
+            <div class="header_title header_campaigns">
+                Total number of campaigns
+            </div>
+            <div class="header_body body_campaigns">
+                145
+            </div>
+        </div>
+        <div class="dashboard_header_div">
+            <div class="header_title header_pledges">
+                Total number of pledges
+            </div>
+            <div class="header_body header_pledges">
+                4543
+            </div>
+        </div>
+        <div class="dashboard_header_div">
+            <div class="header_title header_raised">
+                Total funds raised
+            </div>
+            <div class="header_body header_raised">
+                455345345 &euro;
+            </div>
+        </div>
     </div>
     <table id="proposal_table" class="table table-striped table-bordered generic_table" width="100%" cellspacing="0">
         <thead>

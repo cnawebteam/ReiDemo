@@ -185,3 +185,16 @@ body {
     margin-bottom: 0px;
   }
 
+  #dashboard_header {
+    height: 300px;
+    display: flex;
+  }
+
+  .dashboard_header_div {
+    height: 100%;
+    width: 25%;
+  }
+
+  .header_title {
+    height: 60px;
+  }
