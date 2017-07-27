@@ -38,9 +38,9 @@ def users_view(request):
 
 def campaign_proposals_view(request):
     chart_data = [
-       ['Pending', 'Running', 'Failed', 'Finished'],
-       ['Pending', 100],
-       ['Running', 40],
+       ['Running', 'Pending', 'Failed', 'Finished'],
+       ['Running', 101],
+       ['Pending', 40],
        ['Failed', 3],
        ['Finished', 10],
     ]
