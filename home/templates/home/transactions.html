@@ -23,7 +23,7 @@
             {% for entry in content %}
                 <tr>
                     <td>{{ entry.id }}</td>
-                    <td>{{ entry.campaignId }}</td>
+                    <td>{{ entry.campaign.title }}</td>
                     <td>{{ entry.pledger.name }} </td>
                     <td>{{ entry.pledgeStatus }}</td>
                     <td>{{ entry.pledgedAmount }}</td>
