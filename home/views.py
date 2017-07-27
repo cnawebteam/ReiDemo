@@ -171,7 +171,7 @@ def campaign_details_view(request, campaign_id=None):
                     'campaign_page_url': json_data['campaignUrl'],
                     # 'campaign_page_id': json_data['campaignPageId'],
                     'description': json_data['description'],
-                    'comments': json_data['description'],
+                    'comments': json_data['comment'],
                     'status': json_data['campaignStatus'],
     }
 
