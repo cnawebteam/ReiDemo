@@ -44,8 +44,9 @@ def campaign_proposals_view(request):
        ['Failed', 3],
        ['Finished', 10],
     ]
-    data_source = SimpleDataSource(data=chart_data)
-    chart = morris.DonutChart(data_source, height=250, width=250)
+    # data_source = SimpleDataSource(data=chart_data,)
+    # chart = morris.DonutChart(data_source, height=250, width=250)
+    # chart = morris.DonutChart(data_source, html_id='donut_div')
 
     try:
         response = requests.get('https://ct-campaign-service.herokuapp.com/campaignProposal')
@@ -60,7 +61,8 @@ def campaign_proposals_view(request):
     args.update(csrf(request))
 
     args['content'] = json_data
-    args['chart'] = chart
+    # args['chart'] = chart
+    args['chart_data'] = chart_data
 
     return render_to_response('home/campaign_proposals.html', args)
 
