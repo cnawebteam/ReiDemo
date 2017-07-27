@@ -29,7 +29,7 @@ SECRET_KEY = 'a!-1no7w3@7w20ier66!0=#^+0!y0wx@l8at%k1ey&tho$$4-u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['raiffeisen-admin-demo.herokuapp.com']
+ALLOWED_HOSTS = ['raiffeisen-admin-demo.herokuapp.com', '127.0.0.1']
 
 
 # Application definition

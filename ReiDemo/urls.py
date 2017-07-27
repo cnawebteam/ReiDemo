@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from home.views import campaign_proposals_view, login_view
+from ReiDemo import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^$', campaign_proposals_view, name='home'),
     url(r'^home/', include('home.urls', namespace='home')),
     url(r'^login/$', login_view, name='login'),
-    url(r'^admin/', admin.site.urls),
-]
+    url(r'^admin/', admin.site.urls)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
