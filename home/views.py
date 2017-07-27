@@ -96,16 +96,11 @@ def campaign_proposal_details_view(request, proposal_id=None):
     if request.method == 'POST':
         form = EditProposalForm(request.POST, initial=initial_data)
         if form.is_valid():
-            # json_data['campaignType'] = form.cleaned_data['campaign_category']
-            # json_data['initiator']['permanentResidence'] = form.cleaned_data['permanent_residence']
-            # json_data['initiator']['email'] = form.cleaned_data['email']
-            # json_data['initiator']['mobileNumber'] = form.cleaned_data['mobile_number']
-            # json_data['projectLocation'] = form.cleaned_data['project_location']
-            # json_data['initiator']['iban'] = form.cleaned_data['IBAN']
-            # json_data['campaignUrl'] = form.cleaned_data['campaign_page_url']
-            # json_data['campaignPageId'] = form.cleaned_data['campaign_page_id']
-            # json_data['description'] = form.cleaned_data['description']
-            # json_data['campaignUrl'] = form.cleaned_data['comments']
+            json_data['campaignType'] = form.cleaned_data['campaign_type']
+            json_data['projectLocation'] = form.cleaned_data['project_location']
+            json_data['campaignUrl'] = form.cleaned_data['campaign_page_url']
+            json_data['campaignPageId'] = form.cleaned_data['campaign_page_id']
+            json_data['description'] = form.cleaned_data['description']
             json_data['proposalStatus'] = form.cleaned_data['status']
             headers = {"Content-Type": "application/json"}
             r = requests.put('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id,

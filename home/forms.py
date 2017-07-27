@@ -4,26 +4,27 @@ from django import forms
 from crispy_forms.helper import FormHelper
 
 CAMPAIGN_STATUSES = (
-    ('PENDING', 'PENDING'),
-    ('RUNNING', 'RUNNING'),
-    ('FINISHED', 'FINISHED'),
-    ('FAILED', 'FAILED')
+    ('Pending', 'PENDING'),
+    ('Running', 'RUNNING'),
+    ('Finished', 'FINISHED'),
+    ('Failed', 'FAILED')
 )
 
 PROPOSAL_STATUSES = (
-    ('PENDING', 'PENDING'),
-    ('APPROVED', 'APPROVED'),
-    ('REJECTED', 'REJECTED')
+    ('Pending', 'PENDING'),
+    ('Approved', 'APPROVED'),
+    ('Rejected', 'REJECTED'),
+    ('Finished', 'FINISHED'),
 )
 
 PROPOSAL_TYPE = (
-    ('CHARITY', 'CHARITY'),
-    ('SPORTS', 'SPORTS'),
-    ('TECHNOLOGY', 'TECHNOLOGY'),
-    ('ART', 'ART'),
-    ('ANIMALS', 'ANIMALS'),
-    ('CULTURE', 'CULTURE'),
-    ('COMMUNITY_PROJECTS', 'COMMUNITY_PROJECTS'),
+    ('Charity', 'CHARITY'),
+    ('Sports', 'SPORTS'),
+    ('Technology', 'TECHNOLOGY'),
+    ('Art', 'ART'),
+    ('Animals', 'ANIMALS'),
+    ('Culture', 'CULTURE'),
+    ('Community projects', 'COMMUNITY_PROJECTS'),
 )
 
 helper_layout = Layout(Div(
@@ -92,11 +93,11 @@ class EditProposalForm(forms.Form):
 )
 
     campaign_type = forms.ChoiceField(label='Type', choices=PROPOSAL_TYPE)
-    permanent_residence = forms.CharField(max_length=100)
-    email = forms.EmailField(max_length=100)
-    mobile_number = forms.CharField(max_length=100)
+    permanent_residence = forms.CharField(max_length=100, disabled=True)
+    email = forms.EmailField(max_length=100, disabled=True)
+    mobile_number = forms.CharField(max_length=100, disabled=True)
     project_location = forms.CharField(max_length=100)
-    IBAN = forms.CharField(max_length=100)
+    IBAN = forms.CharField(max_length=100, disabled=True)
     campaign_page_url = forms.CharField(max_length=100)
     campaign_page_id = forms.CharField(max_length=100)
     description = forms.CharField(widget=forms.Textarea)
