@@ -26,8 +26,8 @@ $(document).ready(function() {
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
             ['Task', 'Hours per Day'],
-            ['Running',     33],
-            ['Pending',      103],
+            ['Running', 33],
+            ['Pending', 103],
             ['Failed',  3],
             ['Finished', 10],
         ]);
