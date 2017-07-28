@@ -204,3 +204,7 @@ body {
   #gchart_div{
     height: 300px;
   }
+
+  #container_right h2 {
+    font-size: 50px;
+  }
