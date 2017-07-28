@@ -33,24 +33,28 @@ $(document).ready(function() {
         ]);
 
         var options = {
-            //'title': 'My Daily Activities',
             'pieHole': 0.65,
             'colors':['#f0579a','#5769ef', '#3fbfc0', '#f0a258'],
             'height': 250,
             'width': 300,
             'chartArea': {
                 'width': '100%', 'height': '80%',
-                //left: 0, top: 10
             },
             'legend': {'position': 'bottom'},
             'backgroundColor': '#EEEEEE',
-            //'backgroundColor.stroke': '#f0579a',
-            //'backgroundColor.strokeWidth': 10,
             'fontSize': 12,
             'pieSliceText': 'none',
             'pieSliceBorderColor': 'white',
-            'pieStartAngle': 240
-            //'chartArea':{left:0,top:0,width:'100%',height:'80%'}
+            'pieStartAngle': 240,
+            'tooltip': {
+                'ignoreBounds': true,
+                'isHtml': true,
+                'text': 'both',
+                'textStyle': {
+                    'bold': true,
+                    'fontSize': 15
+                }
+            }
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donut_div'));
