@@ -103,3 +103,10 @@ class EditProposalForm(forms.Form):
     description = forms.CharField(widget=forms.Textarea)
     comments = forms.CharField(widget=forms.Textarea, label="Approver Comments")
     status = forms.ChoiceField(label='Status', choices=PROPOSAL_STATUSES)
+
+
+class EditProposalFormApproved(EditProposalForm):
+    def __init__(self, *args, **kwargs):
+        super(EditProposalForm, self).__init__(*args, **kwargs)
+
+    status = forms.ChoiceField(label='Status', choices=PROPOSAL_STATUSES, disabled=True)

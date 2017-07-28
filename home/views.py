@@ -6,7 +6,7 @@ import requests, json
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.template.context_processors import csrf
-from home.forms import EditCampaignForm, EditProposalForm
+from home.forms import EditCampaignForm, EditProposalForm, EditProposalFormApproved
 from django.core.urlresolvers import reverse
 
 
@@ -96,7 +96,11 @@ def campaign_proposal_details_view(request, proposal_id=None):
     }
 
     if request.method == 'POST':
-        form = EditProposalForm(request.POST, initial=initial_data)
+        if json_data['proposalStatus'] == 'Approved':
+            form = EditProposalFormApproved(request.POST, initial=initial_data)
+        else:
+            form = EditProposalForm(request.POST, initial=initial_data)
+
         headers = {"Content-Type": "application/json"}
         if form.is_valid():
             json_data['campaignType'] = form.cleaned_data['campaign_type']
@@ -110,13 +114,19 @@ def campaign_proposal_details_view(request, proposal_id=None):
             r = requests.put('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id,
                              headers=headers,
                              data=json.dumps(json_data))
+
             if form.cleaned_data['status'] == 'Approved' and request.POST.get("start_campaign"):
                 r = requests.post('https://ct-campaign-service.herokuapp.com/campaignProposal/' + proposal_id + '/start',
                                   headers=headers)
                 campaign_id = json.loads(r.content.decode('utf8'))['id']
                 return HttpResponseRedirect(reverse('home:campaign_details', kwargs={'campaign_id': campaign_id}))
+            else:
+                return HttpResponseRedirect(reverse('home:campaign_proposal_details', kwargs={'proposal_id': proposal_id}))
     else:
-        form = EditProposalForm(initial=initial_data)
+        if json_data['proposalStatus'] == 'Approved':
+            form = EditProposalFormApproved(initial=initial_data)
+        else:
+            form = EditProposalForm(initial=initial_data)
 
     args['form'] = form
     args['data'] = json_data
