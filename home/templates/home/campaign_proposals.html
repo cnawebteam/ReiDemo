@@ -7,6 +7,10 @@
     <h2>
     Dashboard
     </h2>
+    <script type="text/javascript">
+        chart_data = {{ chart_data|safe }};
+        widget.init(chart_data);
+    </script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
@@ -24,7 +28,7 @@
                 Total number of campaigns
             </div>
             <div class="header_body body_campaigns">
-                145
+                {{ campaigns }}
             </div>
         </div>
         <div class="dashboard_header_div">
@@ -32,7 +36,7 @@
                 Total number of pledges
             </div>
             <div class="header_body header_pledges">
-                4543
+                {{ pledges }}
             </div>
         </div>
         <div class="dashboard_header_div">
@@ -40,7 +44,7 @@
                 Total funds raised
             </div>
             <div class="header_body header_raised">
-                455345345 &euro;
+                {{ pledge_amount }} &euro;
             </div>
         </div>
     </div>

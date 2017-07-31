@@ -18,18 +18,20 @@ $(document).ready(function() {
         "columnDefs": [
         { "width": "2.5%", "targets": [0] },
         { "width": "19%", "targets": [1,2,3,4,5,6] }],
-        "order": [ 0, 'asc' ]
+        "order": [ 0, 'asc' ],
+        "pageLength": 10
     });
 
     google.charts.load("current", {packages:["corechart"]});
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
+
         var data = google.visualization.arrayToDataTable([
             ['Task', 'Hours per Day'],
-            ['Running', 33],
-            ['Pending', 103],
-            ['Failed',  3],
-            ['Finished', 10],
+            ['Running', chart_data['Running']],
+            ['Pending', chart_data['Pending']],
+            ['Failed',  chart_data['Failed']],
+            ['Finished', chart_data['Finished']],
         ]);
 
         var options = {

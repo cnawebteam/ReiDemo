@@ -37,32 +37,69 @@ def users_view(request):
 
 
 def campaign_proposals_view(request):
-    chart_data = [
-       ['Running', 'Pending', 'Failed', 'Finished'],
-       ['Running', 101],
-       ['Pending', 40],
-       ['Failed', 3],
-       ['Finished', 10],
-    ]
+    # chart_data = [
+    #    ['Running', 'Pending', 'Failed', 'Finished'],
+    #    ['Running', 101],
+    #    ['Pending', 40],
+    #    ['Failed', 3],
+    #    ['Finished', 10],
+    # ]
     # data_source = SimpleDataSource(data=chart_data,)
     # chart = morris.DonutChart(data_source, height=250, width=250)
     # chart = morris.DonutChart(data_source, html_id='donut_div')
 
     try:
-        response = requests.get('https://ct-campaign-service.herokuapp.com/campaignProposal')
-        content = response.content
-
+        proposal_response = requests.get('https://ct-campaign-service.herokuapp.com/campaignProposal')
+        content = proposal_response.content
         my_json = content.decode('utf8').replace("'", '"')
-        json_data = json.loads(my_json)
+        proposal_json_data = json.loads(my_json)
+
+        campaign_response = requests.get('https://ct-campaign-service.herokuapp.com/campaign')
+        content = campaign_response.content
+        my_json = content.decode('utf8').replace("'", '"')
+        campaign_json_data = json.loads(my_json)
+
+        pledge_response = requests.get('https://ct-campaign-service.herokuapp.com/campaignPledge')
+        content = pledge_response.content
+        my_json = content.decode('utf8').replace("'", '"')
+        pledge_json_data = json.loads(my_json)
+
+        number_of_campaigns = len(campaign_json_data)
+        number_of_pledges = len(pledge_json_data)
     except:
-        json_data = "Could not fetch Campaign Proposals"
+        proposal_json_data = None
+        campaign_json_data = None
+        number_of_campaigns = 0
+
+    chart_data = {'Pending': 0, 'Running': 0, 'Finished': 0, 'Failed': 0}
+
+    for campaign in campaign_json_data:
+        if campaign['campaignStatus'] == 'Pending':
+            chart_data['Pending'] += 1
+        elif campaign['campaignStatus'] == 'Running':
+            chart_data['Running'] += 1
+        elif campaign['campaignStatus'] == 'Finished':
+            chart_data['Finished'] += 1
+        elif campaign['campaignStatus'] == 'Failed':
+            chart_data['Failed'] += 1
+
+    pledge_amount = 0
+    for pledge in pledge_json_data:
+        try:
+            pledge_amount += pledge['pledgedAmount']
+        except:
+            pass
+
 
     args = {}
     args.update(csrf(request))
 
-    args['content'] = json_data
-    # args['chart'] = chart
+    args['content'] = proposal_json_data
+    args['campaigns'] = campaign_json_data
+    args['campaigns'] = number_of_campaigns
+    args['pledges'] = number_of_pledges
     args['chart_data'] = chart_data
+    args['pledge_amount'] = pledge_amount
 
     return render_to_response('home/campaign_proposals.html', args)
 
