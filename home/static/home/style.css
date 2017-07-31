@@ -208,3 +208,107 @@ body {
   #container_right h2 {
     font-size: 50px;
   }
+/* Custom css */
+.navbar-inverse {
+    background-color: #fff200;
+    border-color: #fff200;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+  background-color: transparent !important;
+  color:#1c1c1c !important;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color:#1c1c1c !important;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+     border: none;
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+     color: #000;
+     background-color: #fff200;
+     border-color: #fff200;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+     border: none;
+     padding: 9px 24px;
+}
+
+#proposal_table_info {
+     padding-left: 40px;
+     padding-top: 30px;
+     font-style: italic;
+     font-weight: bold;
+}
+
+tr.even {
+     background-color: #f6f5f5 !important
+}
+
+tr.odd {
+     background-color: #fff
+}
+
+.table-bordered {
+     border: none !important
+}
+
+#proposal_table_wrapper {
+     background: #fff;
+     margin: 0 45px 45px;
+     padding: 0 25px 25px;
+     box-shadow:0px 2px 10px rgba(0, 0, 0, 0.19)
+}
+
+.table>caption+thead>tr:first-child>td,
+.table>caption+thead>tr:first-child>th,
+.table>colgroup+thead>tr:first-child>td,
+.table>colgroup+thead>tr:first-child>th,
+.table>thead:first-child>tr:first-child>td,
+.table>thead:first-child>tr:first-child>th {
+     border-top: 0;
+     border-left: none;
+     border-right: none;
+     text-transform: uppercase;
+     padding: 33px 0px;
+     border-bottom: 1px solid #ddd;
+}
+
+.table-bordered>tbody>tr>td,
+.table-bordered>tbody>tr>th,
+.table-bordered>tfoot>tr>td,
+.table-bordered>tfoot>tr>th,
+.table-bordered>thead>tr>td,
+.table-bordered>thead>tr>th {
+     line-height: 1.2;
+     border-top: none;
+     border-bottom: none;
+         border-left: none;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+     padding: 15px 5px;
+     text-align: center;
+     color: #1c1c1c;
+}
+
+.table a {color:#1c1c1c !important; text-decoration: none }
+
+tr td:last-of-type {border-right: none !important}
+
+#proposal_table_length,
+#proposal_table_filter {display: none!important}
