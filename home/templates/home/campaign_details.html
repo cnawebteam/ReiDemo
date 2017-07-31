@@ -14,10 +14,20 @@
 
     <div id="campaign_header">
         <div id="funding_status">
-            End date: <br/> {{ data.endDate }}
+            <div class="title_status title-top">
+                End date:
+            </div> 
+            <div class="content_campaign_box content_status">
+                {{ data.endDate }}
+            </div>    
         </div>
         <div id="target_amount">
-            Target amount: <br/> {{ data.targetAmount }} EUR
+            <div class="title_amount title-top">
+                Target amount:
+            </div>
+            <div class="content_campaign_box content_amount">
+                {{ data.targetAmount }} EUR
+            </div>    
         </div>
         <div id="documentation">
             Campaign documentation: <br/>
