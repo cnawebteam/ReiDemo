@@ -239,6 +239,10 @@
       margin-right: 0;
   }
 
+  .donut_header {
+    overflow: visible;
+  }
+
   .header_title {
       /*height: 60px;*/
   }
