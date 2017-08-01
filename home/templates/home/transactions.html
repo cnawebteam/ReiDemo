@@ -26,7 +26,7 @@
                     <td>{{ entry.campaign.title }}</td>
                     <td>{{ entry.pledger.name }} </td>
                     <td>{{ entry.pledgeStatus }}</td>
-                    <td>{{ entry.pledgedAmount }}</td>
+                    <td>{{ entry.pledgedAmount|floatformat:2 }}</td>
                     <td>No Comment</td>
                     <td>View, Unpledge</td>
                 </tr>

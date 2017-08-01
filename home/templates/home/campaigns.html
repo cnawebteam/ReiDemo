@@ -28,7 +28,7 @@
                     <td>{{ entry.id }}</td>
                     <td>{{ entry.title }}</td>
                     <td>{{ entry.owner.name }} </td>
-                    <td>{{ entry.targetAmount }}</td>
+                    <td>{{ entry.targetAmount|floatformat:2 }}</td>
                     <td>
                         <div id="my-progress" class="progress">
                             <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
