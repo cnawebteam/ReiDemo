@@ -218,6 +218,10 @@
       overflow: hidden;
   }
 
+  .donut_header {
+      overflow: visible;
+  }
+
   .dashboard_header_div:last-child {
       margin-right: 0;
   }
