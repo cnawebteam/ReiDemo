@@ -643,3 +643,7 @@
       height: 280px !important;
       resize: none;
   }
+
+  .navbar-brand {
+      margin-bottom: 10px;
+  }
