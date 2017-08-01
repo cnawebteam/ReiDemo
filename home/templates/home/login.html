@@ -10,9 +10,11 @@
         <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" title="default" />
         <script src="{% static 'home/scripts.js' %}"></script>
     </head>
-    <div class="container">
+    <div class="container-fluid login-page">
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
-        <div class="container">
+        <div class="col-md-7 login-left">
+        </div> 
+        <div class="col-md-5">
             <form class="form-signin">
                 <h1 class="form-signin-heading text-muted">Admin Page</h1>
                 <input type="text" class="form-control" placeholder="Username" required="" autofocus="">
@@ -25,7 +27,7 @@
                 </button>
                 </a>
             </div>
-        </div>
+        </div>   
     </div>
 
 {% endblock %}
