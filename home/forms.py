@@ -100,7 +100,7 @@ class EditProposalForm(forms.Form):
     permanent_residence = forms.CharField(max_length=100, disabled=True)
     email = forms.EmailField(max_length=100, disabled=True)
     mobile_number = forms.CharField(max_length=100, disabled=True)
-    project_location = forms.CharField(max_length=100)
+    project_location = forms.CharField(max_length=100, disabled=True)
     IBAN = forms.CharField(max_length=100, disabled=True)
     campaign_page_url = forms.CharField(max_length=100)
     campaign_page_id = forms.CharField(max_length=100)
