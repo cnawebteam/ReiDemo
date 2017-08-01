@@ -128,27 +128,6 @@
  * --------------------------------------------------
  */
 
-  @media screen and (max-width: 767px) {
-      /*   .row-offcanvas {
-    position: relative;
-    -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-    width: calc(100% + 220px);
-  }
-
-  .row-offcanvas-left {
-    left: -220px;
-  }
-
-  .row-offcanvas-left.active {
-    left: 0;
-    } */
-      .sidebar-offcanvas {
-          display: none
-      }
-  }
-
   #users_table,
   #campaign_table_wrapper,
   #proposal_table,
@@ -212,7 +191,9 @@
       height: 250px;
       margin: auto;
   }
-
+  .donut_header {
+    overflow: visible;
+  }
   #my-progress {
       margin-bottom: 0px;
   }
@@ -237,10 +218,6 @@
 
   .dashboard_header_div:last-child {
       margin-right: 0;
-  }
-
-  .donut_header {
-    overflow: visible;
   }
 
   .header_title {
@@ -484,6 +461,12 @@
   #donut_div rect {
       fill: #fff !important;
   }
+  .logo-block {    
+    position: absolute;
+    bottom: 65px;
+    left: 26px;
+    width: 120px;
+  }
 
   .dashboard_header_div .header_title {
       color: #fff;
@@ -562,12 +545,13 @@
   }
 
   #campaign_table_filter label {
-      color: #eee
+      color: #1a1a1a;
+      font-weight: 300;
   }
 
   #campaign_table_length label {
       color: #1c1c1c;
-      font-weight: 300
+      font-weight: 300;
   }
 
   #campaign_table_length .form-inline .form-control {
@@ -765,7 +749,68 @@
       position: relative;
       top: 0%;
       left: 50%;
-      transform: translate(-50%, 50%);
-      -webkit-transform: translate(-50%, 50%);
-      -ms-transform: translate(-50%, 50%);
+      transform: translate(-50%, 75%);
+      -webkit-transform: translate(-50%, 75%);
+      -ms-transform: translate(-50%, 75%);
   }
+
+@media screen and (max-width: 991px) {
+  .login-left{
+    height:400px !important
+  }
+  .login-form {
+    transform: none;
+    -webkit-transform: none;
+    transform: none;
+    left:0;
+    top:0;
+    margin-top: 80px;
+    margin-bottom: 40px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .sidebar-offcanvas {
+      display: none;
+  }
+  #sidebar {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    height: auto;
+    bottom:auto;
+  }
+  .navbar-toggle {
+    margin-top: 13px;
+    background-color: #1c1c1c;
+  }
+  #sidebar ul li {
+    margin-bottom: 35px;
+  }
+  .login-left{
+    height:auto !important;
+    min-height: 500px;
+    background-size:cover !important;
+    background-position:center;
+  }
+  .logo-block {    
+    position: relative;
+    bottom: 0;
+    left: 35px;
+  }
+  .form-signin .form-signin-heading {
+    margin-bottom:15px;
+  }
+  .login-form {
+    margin-top:50px;
+    margin-bottom:30px;
+  }
+  .form-signin input[type="text"] {
+    margin-bottom:35px;
+  }
+}  
+
+@media screen and (max-width: 600px) {
+  .login-left{
+    min-height:300px;
+  } 
+}
