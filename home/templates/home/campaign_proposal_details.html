@@ -10,21 +10,21 @@
     <h2>
     Campaign proposal "{{ data.title }}"
     </h2>
-    <div class="details_header">
-        <div class="details_div">
-            <div class="details_header_left">
+    <div id="campaign_header">
+        <div id="funding_status">
+            <div class="header_title header_campaigns">
                 Funding duration:
             </div>
-            <div class="details_body_left">
+            <div class="header_body body_campaigns">
                 {{ data.duration }} days
             </div>
         </div>
-        <div class="details_div">
-            <div class="details_header_left">
+        <div id="target_amount">
+            <div class="header_title header_pledges">
                 Target amount:
             </div>
-            <div class="details_body_left">
-                {{ data.targetAmount }} &euro;
+            <div class="header_body header_pledges">
+                {{ data.targetAmount }} EUR
             </div>
         </div>
     </div>
