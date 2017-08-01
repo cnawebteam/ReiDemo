@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#transaction_table').DataTable({
         "order": [ 0, 'asc' ]
     });
-
+    
     $('#users_table').DataTable({
         //"columnDefs": [
         //{ "width": "2.5%", "targets": [0,1] },
@@ -62,4 +62,18 @@ $(document).ready(function() {
         var chart = new google.visualization.PieChart(document.getElementById('donut_div'));
         chart.draw(data, options);
     }
+    
 } );
+function loginHeight() {
+    var wWidth = jQuery(window).width();
+    var wHeight = jQuery(window).height();
+    if (wWidth > 767) {
+        jQuery('.login-left').height(wHeight);
+    } else {
+        jQuery('.login-left').height('auto');
+    }    
+}
+
+jQuery(window).on("load resize", function(){
+    loginHeight();
+});
