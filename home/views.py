@@ -70,6 +70,7 @@ def campaign_proposals_view(request):
         proposal_json_data = None
         campaign_json_data = None
         number_of_campaigns = 0
+        number_of_pledges = 0
 
     chart_data = {'Pending': 0, 'Running': 0, 'Finished': 0, 'Failed': 0}
 
@@ -95,7 +96,6 @@ def campaign_proposals_view(request):
     args.update(csrf(request))
 
     args['content'] = proposal_json_data
-    args['campaigns'] = campaign_json_data
     args['campaigns'] = number_of_campaigns
     args['pledges'] = number_of_pledges
     args['chart_data'] = chart_data
