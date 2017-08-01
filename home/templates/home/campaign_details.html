@@ -7,41 +7,25 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-
     <h2>
     Campaign "{{ data.title }}"
     </h2>
-
-    <div id="campaign_header">
-        <div id="funding_status">
-            <div class="title_status title-top">
+    <div class="details_header">
+        <div class="details_header_div">
+            <div class="details_title details_header_left">
                 End date:
-            </div> 
-            <div class="content_campaign_box content_status">
+            </div>
+            <div class="details_body details_body_left">
                 {{ data.endDate }}
-            </div>    
+            </div>
         </div>
-        <div id="target_amount">
-            <div class="title_amount title-top">
+        <div class="details_header_div details_header_right">
+            <div class="details_title">
                 Target amount:
             </div>
-            <div class="content_campaign_box content_amount">
-                {{ data.targetAmount }} EUR
-            </div>    
-        </div>
-        <div id="documentation">
-            Campaign documentation: <br/>
-            {% for key, value in data.campaignProposalDocumentIds.items %}
-                {% if not forloop.last %}
-                    <div class="filename">
-                        <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>,&nbsp;
-                    </div>
-                {% elif forloop.last %}
-                    <div class="filename">
-                        <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>
-                    </div>
-                {% endif %}
-            {% endfor %}
+            <div class="details_body details_body_right">
+                {{ data.targetAmount }} &euro;
+            </div>
         </div>
     </div>
 
