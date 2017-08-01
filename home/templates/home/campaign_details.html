@@ -28,11 +28,9 @@
             </div>
         </div>
     </div>
-
     <form action="" method="POST">
         {% crispy form %}
         <input type="submit" value="End Campaign" class="btn btn-primary btn-lg" name="campaign_form">
         <input type="button" value="Cancel" class="btn btn-primary btn-lg" name="cancel_form" onclick="window.location = '/home/campaigns/';">
     </form>
-
 {% endblock %}
