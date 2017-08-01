@@ -69,7 +69,7 @@
                 <td>{{ entry.targetAmount }}</td>
                 <td>{{ entry.proposalStatus }}</td>
                 <td>{{ entry.initiator.name }}</td>
-                <td>{{ entry.campaignUrl|urlizetrunc:45 }}</td>
+                <td>{{ entry.campaignUrl|urlizetrunc:35 }}</td>
                 <td><a href="{% url 'home:campaign_proposal_details' entry.id %}">Edit</a></td>
             </tr>
         {% endfor %}
