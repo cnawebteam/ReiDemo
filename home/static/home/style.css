@@ -2,8 +2,7 @@
   /*LOGIN FORM--------------------------------------------------------------------*/
 
   body {
-      padding-top: 40px;
-      padding-bottom: 40px;
+      padding: 0;
       background-color: #eee;
       font-family: 'Roboto', sans-serif !important;
   }
@@ -20,14 +19,23 @@
   }
 
   .form-signin {
-      max-width: 280px;
-      padding: 15px;
+      max-width: 380px;
+      padding: 0;
       margin: 0 auto;
   }
 
   .form-signin .form-signin-heading,
   .form-signin {
       margin-bottom: 10px;
+  }
+
+
+  .form-signin .form-signin-heading {
+      text-align: left;
+      color: #000;
+      text-shadow: none;
+      font-weight: 300;
+      margin-bottom: 60px
   }
 
   .form-signin .form-control {
@@ -46,24 +54,24 @@
 
   .form-signin input[type="text"] {
       margin-bottom: -1px;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-      border-top-style: solid;
-      border-right-style: solid;
-      border-bottom-style: none;
-      border-left-style: solid;
-      border-color: #000;
+      border: 0;
+      border-bottom: 1px solid #ababab;
+      margin-bottom: 50px;
+      background: transparent;
+      box-shadow: none;
+      padding: 5px 0 5px 0;
+      border-radius: 0
   }
 
   .form-signin input[type="password"] {
       margin-bottom: 10px;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      border-top-style: none;
-      border-right-style: solid;
-      border-bottom-style: solid;
-      border-left-style: solid;
-      border-color: #000;
+      border: 0;
+      border-bottom: 1px solid #ababab;
+      margin-bottom: 60px;
+      background: transparent;
+      box-shadow: none;
+      padding: 5px 0 5px 0;
+      border-radius: 0
   }
 
   .form-signin-heading {
@@ -73,10 +81,20 @@
   }
 
   .out-of-form {
-      max-width: 280px;
+      max-width: 380px;
       text-align: center;
       position: relative;
       margin: 0 auto;
+  }
+
+
+  .out-of-form a button {
+      background-color: #000;
+      color: #fff
+  }
+
+  .out-of-form a button:hover {
+      background-color: #000
   }
   /*SIDEBAR-----------------------------------------------------*/
 
@@ -85,10 +103,9 @@
   .row-offcanvas {
       height: 100%;
   }
-
-  body {
-      padding-top: 50px;
-  }
+  /*  body {
+    padding-top: 50px;
+    } */
 
   #sidebar {
       width: inherit;
@@ -110,26 +127,25 @@
  * off Canvas sidebar
  * --------------------------------------------------
  */
-  @media screen and (max-width: 768px) {
-      .row-offcanvas {
-          position: relative;
-          -webkit-transition: all 0.25s ease-out;
-          -moz-transition: all 0.25s ease-out;
-          transition: all 0.25s ease-out;
-          width: calc(100% + 220px);
-      }
 
-      .row-offcanvas-left {
-          left: -220px;
-      }
+  @media screen and (max-width: 767px) {
+      /*   .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    width: calc(100% + 220px);
+  }
 
-      .row-offcanvas-left.active {
-          left: 0;
-      }
+  .row-offcanvas-left {
+    left: -220px;
+  }
 
+  .row-offcanvas-left.active {
+    left: 0;
+    } */
       .sidebar-offcanvas {
-          position: absolute;
-          top: 0;
+          display: none
       }
   }
 
@@ -146,6 +162,7 @@
       margin-left: 240px;
       margin-left: 280px;
       margin-right: 40px;
+      padding-top: 50px
   }
 
   #outer_container {
@@ -181,7 +198,7 @@
   }
 
   #documentation {
-      width: 40%;
+      width: 100%;
       margin: 15px;
   }
 
@@ -216,10 +233,6 @@
       box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.19);
       border-radius: 4px;
       overflow: hidden;
-  }
-
-  .donut_header {
-      overflow: visible;
   }
 
   .dashboard_header_div:last-child {
@@ -349,7 +362,6 @@
   }
 
   .table a {
-      color: #1c1c1c !important;
       text-decoration: none
   }
 
@@ -391,7 +403,8 @@
 
   #sidebar ul li a {
       color: #fff;
-      text-transform: uppercase
+      text-transform: uppercase;
+      font-weight: 300;
   }
 
   #sidebar ul li.active a {
@@ -446,7 +459,7 @@
   }
 
   .nav>li>a {
-      padding: 0 !important;
+      padding: 0!important;
       display: inline-block !important;
   }
 
@@ -531,13 +544,17 @@
   }
 
   .progress {
-      border-radius: 8px !important
+      border-radius: 8px !important;
+      background-color: #dfdfdf !important;
   }
 
   #campaign_table_length,
   #campaign_table_filter {
       display: block !important;
-      width: 214px;
+      width: 220px;
+      text-align: right;
+      position: relative;
+      left: -7px;
   }
 
   #campaign_table_filter label {
@@ -554,10 +571,6 @@
   }
   /*campaings SINGLE*/
 
-  /*#documentation {*/
-      /*display: none*/
-  /*}*/
-
   #campaign_header>div {
       width: 50% !important
   }
@@ -568,7 +581,8 @@
       background-color: transparent !important;
   }
 
-  input[name="start_campaign"] {
+  input[name="start_campaign"],
+  input[name="campaign_form"] {
       background-color: #6b77d1;
       text-transform: uppercase;
       font-size: 14px;
@@ -597,7 +611,15 @@
       margin: 30px 0 45px 15px;
   }
 
-  input[name="start_campaign"]:hover {
+  input[name="campaign_form"] {
+
+      margin: 30px 0 45px 15px;
+      padding: 15px 0;
+      width: 175px;
+  }
+
+  input[name="start_campaign"]:hover,
+  input[name="campaign_form"]:hover {
       background-color: #6b77d1;
   }
 
@@ -608,6 +630,32 @@
 
   input[name="cancel_form"]:hover {
       background-color: #000;
+  }
+
+  .filename {
+      display: inline-block;
+      color: #6b77d1;
+      font-weight: 400;
+      font-size: 20px
+  }
+
+  #documentation_title {
+
+      color: #5a5a5a;
+      font-weight: 400;
+      font-size: 20px
+  }
+
+
+  .filename a {
+      padding-left: 10px;
+      color: #6b77d1;
+      font-weight: 400;
+      font-size: 20px
+  }
+
+  .filename a:hover {
+      text-decoration: none
   }
 
   #campaign_header+form {
@@ -642,9 +690,78 @@
   #campaign_header+form textarea {
       height: 280px !important;
       resize: none;
+      background-color: transparent
+  }
+
+  #target_amount .header_title.header_pledges {
+      background: #ef579b;
+      color: #fff;
+      text-align: center;
+      height: 80px;
+      font-size: 19px;
+      text-transform: uppercase;
+      font-weight: 400;
+      padding-top: 26px;
+  }
+
+  #funding_status,
+  #target_amount {
+      background: #fff;
+      -webkit-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.19);
+      -moz-box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.19);
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.19);
+      border-radius: 4px;
+  }
+
+  #funding_status .header_title.header_campaigns {
+      background: #6b77d1;
+      color: #fff;
+      text-align: center;
+      height: 80px;
+      font-size: 19px;
+      text-transform: uppercase;
+      font-weight: 400;
+      padding-top: 26px;
+  }
+
+  #target_amount .header_body,
+  #funding_status .header_body {
+      text-align: center;
+      padding-top: 35px;
+      font-size: 52px;
+      font-weight: 300;
+      padding-bottom: 35px;
+  }
+
+  #campaign_header #target_amount {
+      margin: 0 0 20px 10px;
+      overflow: hidden;
+  }
+
+  #campaign_header #funding_status {
+      margin: 0 10px 20px 0;
+      overflow: hidden;
   }
 
   .navbar-brand {
       margin-bottom: 10px;
       margin-left: 15px;
+  }
+  /*LOGIN PAGE*/
+
+  .login-left {
+      background: url('../../../media/pictures/login_photo.jpg') center center no-repeat;
+  }
+
+  .login-page {
+      padding: 0 !important;
+  }
+
+  .login-form {
+      position: relative;
+      top: 0%;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      -webkit-transform: translate(-50%, 50%);
+      -ms-transform: translate(-50%, 50%);
   }
