@@ -10,40 +10,24 @@
     <h2>
     Campaign proposal "{{ data.title }}"
     </h2>
-
     <div id="campaign_header">
         <div id="funding_status">
             <div class="header_title header_campaigns">
                 Funding duration:
-            </div>  
+            </div>
             <div class="header_body body_campaigns">
                 {{ data.duration }} days
-            </div>    
+            </div>
         </div>
         <div id="target_amount">
             <div class="header_title header_pledges">
-                Target amount: 
-            </div>    
+                Target amount:
+            </div>
             <div class="header_body header_pledges">
                 {{ data.targetAmount }} EUR
-            </div>    
-        </div>
-        <div id="documentation">
-            Campaign documentation: <br/>
-            {% for key, value in data.campaignProposalDocumentIds.items %}
-                {% if not forloop.last %}
-                    <div class="filename">
-                        <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>,&nbsp;
-                    </div>
-                {% elif forloop.last %}
-                    <div class="filename">
-                        <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>
-                    </div>
-                {% endif %}
-            {% endfor %}
+            </div>
         </div>
     </div>
-
     <form action="" method="POST">
         {% crispy form %}
         {% if data.proposalStatus != 'Approved' %}

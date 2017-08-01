@@ -40,7 +40,7 @@
                     <td>{{ entry.startDate }}</td>
                     <td>{{ entry.endDate }}</td>
                     <td>{{ entry.campaignStatus }}</td>
-                    <td>{{ entry.campaignUrl|urlize }}</td>
+                    <td>{{ entry.campaignUrl|urlizetrunc:45 }}</td>
                     <td><a href="{% url 'home:campaign_details' entry.id %}">Edit</a></td>
                 </tr>
             {% endfor %}

@@ -1,4 +1,4 @@
-from crispy_forms.layout import Layout, Div
+from crispy_forms.layout import Layout, Div, HTML
 
 from django import forms
 from crispy_forms.helper import FormHelper
@@ -27,20 +27,26 @@ PROPOSAL_TYPE = (
     ('Community projects', 'COMMUNITY_PROJECTS'),
 )
 
-helper_layout = Layout(Div(
-        Div('campaign_type', css_class='col-sm-6',),
-        Div('project_location', css_class='col-sm-6',),
-        Div('permanent_residence', css_class='col-sm-6',),
-        Div('email', css_class='col-sm-6',),
-        Div('mobile_number', css_class='col-sm-6',),
-        Div('IBAN', css_class='col-sm-6',),
-        Div('campaign_page_url', css_class='col-sm-6',),
-        Div('campaign_page_id', css_class='col-sm-6',),
-        Div('description', css_class='col-sm-6',),
-        Div('comments', css_class='col-sm-6',),
-        Div('status', css_class='col-sm-12',),
-    ),
-)
+documentation_html = """
+        <div id="documentation">
+            <div id="documentation_title">
+                Campaign documentation:
+            </div>
+            <div id="documentation_files">
+            {% for key, value in data.campaignProposalDocumentIds.items %}
+                {% if not forloop.last %}
+                    <div class="filename">
+                        <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>,&nbsp;
+                    </div>
+                {% elif forloop.last %}
+                    <div class="filename">
+                        <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+"""
 
 
 class EditCampaignForm(forms.Form):
@@ -54,7 +60,6 @@ class EditCampaignForm(forms.Form):
         Div('mobile_number', css_class='col-sm-6',),
         Div('IBAN', css_class='col-sm-6',),
         Div('campaign_page_url', css_class='col-sm-6',),
-        # Div('campaign_page_id', css_class='col-sm-6',),
         Div('description', css_class='col-sm-6',),
         Div('comments', css_class='col-sm-6',),
         Div('status', css_class='col-sm-12',),
@@ -65,10 +70,8 @@ class EditCampaignForm(forms.Form):
     permanent_residence = forms.CharField(max_length=100, disabled=True)
     email = forms.EmailField(max_length=100, disabled=True)
     mobile_number = forms.CharField(max_length=100, disabled=True)
-    # project_location = forms.CharField(max_length=100, disabled=True)
     IBAN = forms.CharField(max_length=100, disabled=True)
     campaign_page_url = forms.CharField(max_length=100, disabled=True)
-    # campaign_page_id = forms.CharField(max_length=100, disabled=True)
     description = forms.CharField(widget=forms.Textarea, disabled=True)
     comments = forms.CharField(widget=forms.Textarea, label="Approver Comments")
     status = forms.ChoiceField(label='Status', choices=PROPOSAL_STATUSES, disabled=True)
@@ -88,6 +91,7 @@ class EditProposalForm(forms.Form):
         Div('campaign_page_id', css_class='col-sm-6',),
         Div('description', css_class='col-sm-6',),
         Div('comments', css_class='col-sm-6',),
+        HTML(documentation_html),
         Div('status', css_class='col-sm-12',),
     ),
 )

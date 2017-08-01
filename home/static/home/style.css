@@ -554,9 +554,9 @@
   }
   /*campaings SINGLE*/
 
-  #documentation {
-      display: none
-  }
+  /*#documentation {*/
+      /*display: none*/
+  /*}*/
 
   #campaign_header>div {
       width: 50% !important

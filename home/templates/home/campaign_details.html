@@ -7,48 +7,30 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-
     <h2>
     Campaign "{{ data.title }}"
     </h2>
-
     <div id="campaign_header">
         <div id="funding_status">
-            <div class="title_status title-top">
-                End date:
-            </div> 
-            <div class="content_campaign_box content_status">
+            <div class="header_title header_campaigns">
+                Funding duration:
+            </div>
+            <div class="header_body body_campaigns">
                 {{ data.endDate }}
-            </div>    
+            </div>
         </div>
         <div id="target_amount">
-            <div class="title_amount title-top">
+            <div class="header_title header_pledges">
                 Target amount:
             </div>
-            <div class="content_campaign_box content_amount">
-                {{ data.targetAmount }} EUR
-            </div>    
-        </div>
-        <div id="documentation">
-            Campaign documentation: <br/>
-            {% for key, value in data.campaignProposalDocumentIds.items %}
-                {% if not forloop.last %}
-                    <div class="filename">
-                        <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>,&nbsp;
-                    </div>
-                {% elif forloop.last %}
-                    <div class="filename">
-                        <a href="https://ct-campaign-service.herokuapp.com/campaignProposal/{{ data.id }}/doc/{{ key }}">{{ value }}</a>
-                    </div>
-                {% endif %}
-            {% endfor %}
+            <div class="header_body header_pledges">
+                {{ data.targetAmount }} &euro;
+            </div>
         </div>
     </div>
-
     <form action="" method="POST">
         {% crispy form %}
         <input type="submit" value="End Campaign" class="btn btn-primary btn-lg" name="campaign_form">
         <input type="button" value="Cancel" class="btn btn-primary btn-lg" name="cancel_form" onclick="window.location = '/home/campaigns/';">
     </form>
-
 {% endblock %}
